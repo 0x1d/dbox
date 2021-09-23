@@ -1,0 +1,12 @@
+version: '3'
+services:
+  nextcloud:
+    image: ghcr.io/linuxserver/nextcloud:version-22.1.1
+    container_name: nextcloud
+    env_file: nextcloud.env
+    volumes:
+      - ~/.shroud/nextcloud/config:/config
+      - ~/.shroud/nextcloud/data:/data
+      - ~/.shroud/share:/share
+    ports:
+      - 443:443
