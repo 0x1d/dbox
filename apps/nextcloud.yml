@@ -5,8 +5,8 @@ services:
     container_name: nextcloud
     env_file: nextcloud.env
     volumes:
-      - ~/.shroud/nextcloud/config:/config
-      - ~/.shroud/nextcloud/data:/data
-      - ~/.shroud/share:/share
+      - ${DATA_PATH}/nextcloud/config:/config
+      - ${DATA_PATH}/nextcloud/data:/data
+      - ${DATA_PATH}/share:/share
     ports:
       - 443:443

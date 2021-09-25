@@ -1,25 +1,12 @@
 #!/bin/bash
 
-APP=${APP:-app}
-ENV=${ENV:-~/.shire}
-SRC=${SRC:-https://github.com/0x1d/app.git}
+APP=${APP:-dbox}
+ENV=${ENV:-~/.shroud}
+DATA_PATH=${DATA_PATH:-$ENV/$APP}
+ENV_FILE=${ENV_FILE:-$DATA_PATH/.env}
 BRANCH=${BRANCH:-master}
-ENV_FILE=${ENV_FILE:-$ENV/$APP/.env}
 
 [[ -f $ENV_FILE ]] && echo "Using $ENV_FILE" || (echo "Initalize $ENV_FILE" ; init)
-
-function info {
-    clear
-    echo "------------------------------------------------------------"
-    echo $APP
-    echo "------------------------------------------------------------"
-    cat $ENV_FILE
-    echo "------------------------------------------------------------"
-    sed -n 's/^##//p' /usr/local/bin/ctl.sh
-    echo "------------------------------------------------------------"
-    tree -d
-}
-
 
 ##ctx         Run in app ENV
 function ctx {
@@ -31,8 +18,7 @@ function ctx {
 
 ##init        Initialize app ENV
 function init {
-    git clone --single-branch --branch ${BRANCH} ${SRC} ${ENV}
-    cp app.env $ENV/$APP/.env
+    git clone --single-branch --branch ${BRANCH} $1 ${ENV}
 }
 
 ##cnt       Run in privileged container
@@ -79,6 +65,18 @@ function down {
 function remove {
     compose down
     rm -rf $ENV/$APP
+}
+
+function info {
+    clear
+    echo "------------------------------------------------------------"
+    echo $APP
+    echo "------------------------------------------------------------"
+    cat $ENV_FILE
+    echo "------------------------------------------------------------"
+    sed -n 's/^##//p' ctl.sh
+    echo "------------------------------------------------------------"
+    tree -d
 }
 
 ${@:-info}

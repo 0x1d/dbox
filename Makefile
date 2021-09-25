@@ -1,5 +1,9 @@
 SHELL=/bin/bash
+
 up: ctl.sh
-	./$< $@ nextcloud
+	./$< $@ components/nextcloud
+
 down: ctl.sh
-	./$< $@ nextcloud
+	./$< $@ components/nextcloud
+
+include components/infranodus.mk

@@ -1,0 +1,19 @@
+version: '3'
+
+services:
+  ui:
+    image: wirelos/infranodus
+    env_file: infranodus.env
+    ports:
+      - 3001:3000
+  db:
+    image: neo4j:3.5.8
+    env_file: infranodus.env
+    volumes:
+      - ${DATA_PATH}/infranodus/conf:/var/lib/neo4j/conf
+      - ${DATA_PATH}/infranodus/plugins:/var/lib/neo4j/plugins
+      - ${DATA_PATH}/infranodus/data:/data
+      - ${DATA_PATH}/share:/share
+    ports:
+      - 7474:7474 
+      - 7687:7687
