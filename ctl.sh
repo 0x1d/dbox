@@ -21,7 +21,8 @@ function init {
     #git clone --single-branch --branch ${BRANCH} $1 ${ENV}
     mkdir -p $DATA_PATH
     touch $ENV_FILE
-    printf "DATA_PATH=$DATA_PATH\n" > $ENV_FILE
+    printf "ENV=$ENV\n" > $ENV_FILE
+    printf "DATA_PATH=$DATA_PATH\n" >> $ENV_FILE
 }
 
 ##cnt         Run in privileged container
@@ -35,7 +36,7 @@ function cnt {
 
 ##up          Just docker-compose up
 function up {
-    docker-compose --env-file $@.env -f $@.yml up --remove-orphans --force-recreate 
+    docker-compose --env-file ${ENV_FILE} -f apps/${1}/compose.yml up --remove-orphans --force-recreate 
 }
 
 ##compose     Just docker-compose
@@ -61,7 +62,6 @@ function stop {
 ##down        Shutdown app
 function down {
     compose down
-    rm -rf $ENV/$APP
 }
 
 ##remove      Remove app and data
