@@ -25,7 +25,7 @@ function init {
     printf "DATA_PATH=$DATA_PATH\n" >> $ENV_FILE
 }
 
-##cnt         Run in privileged container
+##cnt         (repository/imagename) privileged container
 function cnt {
     docker run --rm --privileged \
         --workdir /workspace  \
@@ -34,9 +34,9 @@ function cnt {
         $@
 }
 
-##up          Just docker-compose up
+##up          (app_path) compose up
 function up {
-    docker-compose --env-file ${ENV_FILE} -f apps/${1}/compose.yml up --remove-orphans --force-recreate 
+    docker-compose --env-file ${ENV_FILE} -f ${1}/compose.yml up --remove-orphans --force-recreate 
 }
 
 ##compose     Just docker-compose
@@ -74,8 +74,8 @@ function info {
     clear
     echo "------------------------------------------------------------"
     echo $APP
+    echo "ENV_FILE=$ENV_FILE"
     echo "------------------------------------------------------------"
-    ls $ENV_FILE
     cat $ENV_FILE
     echo "------------------------------------------------------------"
     sed -n 's/^##//p' ctl.sh

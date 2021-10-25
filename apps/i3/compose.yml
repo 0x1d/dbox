@@ -1,0 +1,26 @@
+---
+version: "2.1"
+services:
+  webtop:
+    image: wirelos/i3
+    build: .
+    container_name: webtop
+    privileged: true
+    working_dir: /workspace
+    security_opt:
+      - seccomp:unconfined
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Zurich
+      - SUBFOLDER=/
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ${PWD}/:/workspace
+      - ${PWD}/.webtop:/config
+      - ${PWD}/opt/config/i3/config:/config/.config/i3/config
+      - ${HOME}/.ssh:/config/.ssh:ro
+    ports:
+      - 3000:3000
+    shm_size: "1gb" #optional
+    restart: unless-stopped
