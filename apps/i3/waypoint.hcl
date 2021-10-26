@@ -11,6 +11,7 @@ app "i3" {
           use "docker" {
             image = "wirelos/i3"
             tag   = "latest"
+            local = true
           }
         }
     }
