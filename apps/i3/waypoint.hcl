@@ -16,6 +16,6 @@ app "i3" {
         }
     }
     deploy {
-        use "kubernetes" {}
+        use "docker" {}
     }
 }
