@@ -1,0 +1,1 @@
+telegraf --config http://p9m8i77ls98t1dir9ncdmjn8gs.ingress.nixaid.com/api/v2/telegrafs/08740f832e7c8000

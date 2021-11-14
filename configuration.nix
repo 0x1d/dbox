@@ -45,7 +45,6 @@
     keyMap = "us";
   };
   
-
   virtualisation.docker.enable = true;
 
   # Enable the X11 windowing system.
