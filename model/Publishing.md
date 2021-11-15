@@ -1,0 +1,1 @@
+The process of [[Provider|providing]] a [[Stream]] to a [[Consumer]] through a URL.

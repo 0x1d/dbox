@@ -1,0 +1,1 @@
+Entity which creates a [[Stream]] and sends it to the [[System]].

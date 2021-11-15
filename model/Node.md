@@ -1,0 +1,1 @@
+A set of applications forming a independent entity which is able to accept, process, control and deliver [[Stream|streams]].

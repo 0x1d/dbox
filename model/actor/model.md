@@ -1,6 +1,6 @@
 ---
 
-title: Data Model
+title: Model
 state: PROPOSAL
 description: |
     This proposal describes a data model as graph

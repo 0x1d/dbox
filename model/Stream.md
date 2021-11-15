@@ -1,0 +1,1 @@
+A multimedia stream which originates from a [[User|user]] of the [[System|system]] (or generated inside the system) and which is delivered through a [[Network|network]] of [[Node|nodes]] in the system.
