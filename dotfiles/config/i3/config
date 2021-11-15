@@ -30,6 +30,7 @@ exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 
 #exec --no-startup-id nm-applet
 exec --no-startup-id nitrogen --restore
+exec --no-startup-id obsidian
 #exec --no-startup-id compton -d --config /home/master/.config/compton/config
 
 # Use pactl to adjust volume in PulseAudio.

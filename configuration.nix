@@ -21,11 +21,9 @@
   boot.loader.grub.device = "/dev/sda"; # or "nodev" for efi only
   boot.loader.systemd-boot.enable = true;
 
-  networking.hostName = "yakos"; # Define your hostname.
-  #networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
-
-  # Set your time zone.
   time.timeZone = "Europe/Zurich";
+  networking.hostName = "yakos";
+  #networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   # The global useDHCP flag is deprecated, therefore explicitly set to false here.
   # Per-interface useDHCP will be mandatory in the future, so this generated config
@@ -50,9 +48,10 @@
   # Enable the X11 windowing system.
   services.xserver = {
     enable = true;
+    layout = "us"; # Configure keymap in X11
     desktopManager = {
-      #default = "xfce";
       xterm.enable = false;
+      # Enable xfce only as display manager
       xfce = {
         enable = true;
         noDesktop = true;
@@ -61,15 +60,11 @@
     };
     displayManager = {
         defaultSession = "xfce+i3";
+        lightdm = {
+          enable = true;
+        };
     };
-  };
-
-  # Enable the Plasma 5 Desktop Environment.
-  #services.xserver.displayManager.sddm.enable = true;
-  #services.xserver.desktopManager.plasma5.enable = true;
-  services.xserver.displayManager.lightdm.enable = true;
-  
-  services.xserver.windowManager = {
+    windowManager = {
     i3 = {
       enable = true;
       package = pkgs.i3-gaps;
@@ -83,18 +78,10 @@
      ];
     };
   };
-
-  environment.pathsToLink = [ "/libexec" ];
-
-  programs.dconf.enable = true;
-
-  # Configure keymap in X11
-  services.xserver = {
-    layout = "us";
   };
 
-  # Enable CUPS to print documents.
-  # services.printing.enable = true;
+  environment.pathsToLink = [ "/libexec" ];
+  programs.dconf.enable = true;
 
   # Enable sound.
   sound.enable = true;
@@ -106,7 +93,7 @@
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.master = {
     isNormalUser = true;
-
+    shell = "${pkgs.fish}/bin/fish";
     extraGroups = [ "wheel" "docker" ]; # Enable ‘sudo’ for the user.
   };
 
@@ -128,18 +115,22 @@
     tmux
     ranger
     picom
-    lxappearance
     pcmanfm
+    curl
+    brave
     firefox
     qutebrowser
-    ungoogled-chromium
+    chromium
     chromium-xorg-conf
     ffmpeg-full
     vlc
-    curl
+    
+    
+    # virtualization
     docker
     docker-compose
-    serfdom
+
+    # Hashistack
     packer
     consul
     nomad
@@ -147,31 +138,38 @@
     vault
     terraform
     waypoint
-    wireguard-tools
-    wireshark termshark
+    
+    # monitoring
     telegraf
-    nextdns
+
+    
     etcher
-    #rofi
-    #polybar
     gnumake
     xorg.xkill
     vscode-with-extensions
     ansible
     kubectl kubectx kubernetes-helm lens k3d
-    obsidian
     gimp
     pothos
+    obsidian
     syncthing
     obs-studio obs-gstreamer obs-multi-rtmp
     hackrf soapyhackrf kalibrate-hackrf gqrx rtl_433 kalibrate-rtl
-    gparted
-    filelight
-    fscryptctl
-    axoloti
-    networkmanager
-    barrier
+    lxappearance
     juno-theme
+    barrier
+    filelight
+    gparted
+    
+    # networking
+    networkmanager
+    nextdns
+    wireguard-tools
+    wireshark termshark
+
+    # crypto stuff
+    exodus
+    #fscryptctl
   ];
 
   services.picom = {
