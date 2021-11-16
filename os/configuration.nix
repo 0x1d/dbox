@@ -49,35 +49,44 @@
   services.xserver = {
     enable = true;
     layout = "us"; # Configure keymap in X11
-    desktopManager = {
-      xterm.enable = false;
-      # Enable xfce only as display manager
-      xfce = {
-        enable = true;
-        noDesktop = true;
-        enableXfwm = false;
-      };
-    };
+
+    # Enable touchpad support (enabled default in most desktopManager).
+    libinput.enable = true;
+
+    # Combine xfce and i3
     displayManager = {
         defaultSession = "xfce+i3";
         lightdm = {
           enable = true;
         };
     };
-    windowManager = {
-    i3 = {
-      enable = true;
-      package = pkgs.i3-gaps;
-      extraPackages = with pkgs; [
-        rofi #application launcher 
-        i3status # gives you the default i3 status bar
-        i3lock #default i3 screen locker
-        i3blocks #if you are planning on using i3blocks over i3status
-        arandr # xrandr ui
-        nitrogen # wallpaper
-     ];
+
+    # xfce as display manager
+    desktopManager = {
+      xterm.enable = false;
+      xfce = {
+        enable = true;
+        noDesktop = true;
+        enableXfwm = false; # not as windowManager
+      };
     };
-  };
+
+    # i3 as window Manager
+    windowManager = {
+      i3 = {
+        enable = true;
+        package = pkgs.i3-gaps;
+        extraPackages = with pkgs; [
+          rofi #application launcher 
+          i3status # gives you the default i3 status bar
+          i3lock #default i3 screen locker
+          i3blocks #if you are planning on using i3blocks over i3status
+          arandr # xrandr ui
+          nitrogen # wallpaper
+        ];
+      };
+    };
+
   };
 
   environment.pathsToLink = [ "/libexec" ];
@@ -86,9 +95,6 @@
   # Enable sound.
   sound.enable = true;
   hardware.pulseaudio.enable = true;
-
-  # Enable touchpad support (enabled default in most desktopManager).
-  services.xserver.libinput.enable = true;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.master = {
@@ -102,21 +108,29 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
+
+    # code
     libcap glibc.static go gcc 
+
+    # shell
+    git
+    fish
+    starship
+    fzf
+    curl
+    wget
+    tree
+    ranger
+    tmux
     vim
     spacevim
-    starship
+    alacritty
     bpytop
     iotop
-    git
-    wget
-    alacritty
-    fish
-    tmux
-    ranger
+    
+    # X11
     picom
     pcmanfm
-    curl
     brave
     firefox
     qutebrowser
@@ -124,8 +138,8 @@
     chromium-xorg-conf
     ffmpeg-full
     vlc
-    
-    
+    xorg.xkill
+        
     # virtualization
     docker
     docker-compose
@@ -141,14 +155,17 @@
     
     # monitoring
     telegraf
-
     
-    etcher
-    gnumake
-    xorg.xkill
-    vscode-with-extensions
-    ansible
+    # Kubernetes
     kubectl kubectx kubernetes-helm lens k3d
+
+    gnumake
+    ansible
+    vscode-with-extensions
+    etcher
+    gparted
+
+    # X11 extra
     gimp
     pothos
     obsidian
@@ -159,8 +176,7 @@
     juno-theme
     barrier
     filelight
-    gparted
-    
+      
     # networking
     networkmanager
     nextdns
@@ -207,6 +223,15 @@
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "21.05"; # Did you read the comment?
 
+  #systemd.services.consul.serviceConfig.Type = "notify";
+  #services.consul = {
+  #  enable = true;
+  #  dropPrivileges = true;
+  #};
+
+  #services.nomad = {
+  #  enable = true;
+  #  dropPrivileges = true;
+  #};
+
 }
-
-
