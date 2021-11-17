@@ -104,9 +104,9 @@ bindsym $mod+a focus parent
 #bindsym $mod+d focus child
 
 # Define names for default workspaces for which we configure key bindings later on.
-set $ws1 "(1)"
-set $ws2 "(2)" 
-set $ws3 "(3)"
+set $ws1 "(1) YakOS"
+set $ws2 "(2) Obsidian" 
+set $ws3 "(3) Code"
 set $ws4 "(4)"
 set $ws5 "(5)"
 set $ws6 "(6)"
@@ -198,9 +198,9 @@ bindsym $mod+X mode "$mode_system"
 set $mode_system  Q ➤   W ➤   E ➤   R ➤ 
 mode "$mode_system" {
     bindsym q exec --no-startup-id i3lock-fancy, mode "default"
-    bindsym w exec --no-startup-id ~/.config/i3/scripts/i3exit.sh logout, mode "default"
-    bindsym e exec --no-startup-id ~/.config/i3/scripts/i3exit.sh reboot, mode "default"
-    bindsym r exec --no-startup-id ~/.config/i3/scripts/i3exit.sh shutdown, mode "default"
+    bindsym w exec --no-startup-id ~/.config/i3/exit.sh logout, mode "default"
+    bindsym e exec --no-startup-id ~/.config/i3/exit.sh reboot, mode "default"
+    bindsym r exec --no-startup-id ~/.config/i3/exit.sh shutdown, mode "default"
     bindsym Return mode "default"
     bindsym Escape mode "default"
 }
