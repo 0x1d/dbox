@@ -22,7 +22,7 @@
   boot.loader.systemd-boot.enable = true;
 
   time.timeZone = "Europe/Zurich";
-  networking.hostName = "yakos";
+  networking.hostName = "yakzero";
   #networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   # The global useDHCP flag is deprecated, therefore explicitly set to false here.
@@ -45,10 +45,15 @@
   
   virtualisation.docker.enable = true;
 
+  hardware.opengl.enable = true;
+  hardware.opengl.driSupport32Bit = true;
+
   # Enable the X11 windowing system.
   services.xserver = {
     enable = true;
-    layout = "us"; # Configure keymap in X11
+    layout = "us,de"; # Configure keymap in X11
+    xkbVariant = "workman,";
+    xkbOptions = "grp:win_space_toggle";
 
     # Enable touchpad support (enabled default in most desktopManager).
     libinput.enable = true;
@@ -78,6 +83,7 @@
         package = pkgs.i3-gaps;
         extraPackages = with pkgs; [
           rofi #application launcher 
+          tint2
           i3status # gives you the default i3 status bar
           i3lock #default i3 screen locker
           i3blocks #if you are planning on using i3blocks over i3status
@@ -103,6 +109,7 @@
     extraGroups = [ "wheel" "docker" ]; # Enable ‘sudo’ for the user.
   };
 
+  # uhoh dont tell rms
   nixpkgs.config.allowUnfree = true;
 
   # List packages installed in system profile. To search, run:
@@ -127,6 +134,8 @@
     alacritty
     bpytop
     iotop
+    nmap
+    dig
     
     # X11
     picom
@@ -171,7 +180,10 @@
     obsidian
     syncthing
     obs-studio obs-gstreamer obs-multi-rtmp
-    hackrf soapyhackrf kalibrate-hackrf gqrx rtl_433 kalibrate-rtl
+    rtl-sdr soapysdr soapyhackrf 
+    hackrf kalibrate-hackrf  kalibrate-rtl
+    gqrx cubicsdr
+    rtl_433
     lxappearance
     juno-theme
     barrier
@@ -179,6 +191,7 @@
       
     # networking
     networkmanager
+    networkmanager_dmenu
     nextdns
     wireguard-tools
     wireshark termshark
@@ -186,6 +199,13 @@
     # crypto stuff
     exodus
     #fscryptctl
+    
+    # gaming
+    sc-controller
+    eidolon # Provides a single TUI-based registry for drm-free, wine and steam games on linux, accessed through a rofi launch menu.
+    steam
+    steam-run
+    steam-run-native
   ];
 
   services.picom = {

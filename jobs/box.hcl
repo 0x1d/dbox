@@ -22,7 +22,7 @@ job "box" {
       }
       resources {
         cpu    = 1000
-        memory = 512
+        memory = 1024
       }
     }
     task "nextcloud" {
@@ -33,7 +33,7 @@ job "box" {
       }
       resources {
         cpu    = 1000
-        memory = 512
+        memory = 1024
       }
     }
   }
