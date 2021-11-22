@@ -21,7 +21,7 @@ default_border pixel
 
 
 exec --no-startup-id nitrogen --restore
-exec --no-startup-id alacritty
+exec --no-startup-id alacritty --working-directory ~/src/dbox
 exec --no-startup-id obsidian
 exec --no-startup-id code
 
@@ -45,7 +45,7 @@ bindsym $mod+Return exec alacritty
 bindsym $mod+Shift+q kill
 
 # program launcher
-bindcode $mod+40 exec "rofi -modi drun,window,file-browser,combi -show drun"
+bindcode $mod+40 exec "rofi -modi drun,window,file-browser,combi -show combi"
 
 # change focus
 bindsym $mod+j focus left
@@ -98,15 +98,15 @@ bindsym $mod+a focus parent
 #bindsym $mod+d focus child
 
 # Define names for default workspaces for which we configure key bindings later on.
-set $ws1 "( Terminal )"
-set $ws2 "( Mind     )" 
-set $ws3 "( Code     )"
-set $ws4 "( Web      )"
-set $ws5 "( 5 )"
-set $ws6 "( 6 )"
-set $ws7 "( 7 )"
-set $ws8 "( 8 )"
-set $ws9 "( 9 )"
+set $ws1 "( 1 ~ Shell )"
+set $ws2 "( 2 ~ Mind )" 
+set $ws3 "( 3 ~ Code )"
+set $ws4 "( 4 ~ Grid )"
+set $ws5 "( 5 ~ GFX )"
+set $ws6 "( 6 ~ Gaming )"
+set $ws7 "( 7 ~ Stream )"
+set $ws8 "( 8 ~ COM )"
+set $ws9 "( 9 ~ OPS )"
 
 bindsym $mod+1 workspace $ws1
 bindsym $mod+2 workspace $ws2
@@ -202,13 +202,17 @@ mode "$mode_system" {
 
 for_window [class="qt5ct|Lxappearance|^Gpick$|Pamac|Peek|Nitrogen"] floating enable
 for_window [window_role="^Preferences$"] floating enable
-for_window [class="Alacritty"] $ws1
-for_window [class="Obsidian"] $ws2
-for_window [class="Termite|^Thunar|PCManFM|Firefox"] $ws4
+assign [class="Alacritty"] $ws1
+assign [class="obsidian"] $ws2
+assign [class="Code"] $ws3
+assign [class="Thunar|PCManFM|Firefox"] $ws4
+#assign [class="obs"] $ws7
+assign [class="Lens"] $ws9
 
-# Assign Applications to specific workspace
-# get class with xprop
-assign [class="Firefox"] → $ws4
-assign [class="Code"] → $ws3
-assign [class="PCManFM"] → $ws4
-assign [class="^Obsidian"] → $ws2
+for_window [class="Alacritty"] move container to workspace $ws1; $ws1
+for_window [class="obsidian"] move container to workspace $ws2; $ws2
+for_window [class="Code"] move container to workspace $ws3; $ws3
+for_window [class="vlc"] move container to workspace $ws5; $ws5
+for_window [class="Steam"] move container to workspace $ws6; $ws6
+for_window [class="obs"] move container to workspace $ws7; $ws7
+for_window [class="Lens"] move container to workspace $ws9; $ws9

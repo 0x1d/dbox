@@ -1,0 +1,27 @@
+version: '3'
+
+services:
+
+  consul-agent-1: &consul-agent
+    image: consul:latest
+    #networks:
+    #  - consul-local
+    privileged: true
+    network_mode: host
+    command: "agent -dev"
+  nomad:
+    image: multani/nomad
+    #build: .
+    command: agent -dev-connect
+    privileged: true
+    network_mode: host
+    environment:
+      NOMAD_LOCAL_CONFIG: |
+        data_dir = "/nomad/data/"
+
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:rw
+      - /run/current-system/sw/bin/consul:/bin/consul
+      - /tmp:/tmp
+networks:
+  consul-local:

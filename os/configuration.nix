@@ -45,6 +45,7 @@
   
   virtualisation.docker.enable = true;
 
+  # OpenGL for steam support
   hardware.opengl.enable = true;
   hardware.opengl.driSupport32Bit = true;
 
@@ -52,7 +53,7 @@
   services.xserver = {
     enable = true;
     layout = "us,de"; # Configure keymap in X11
-    xkbVariant = "workman,";
+#    xkbVariant = "workman,";
     xkbOptions = "grp:win_space_toggle";
 
     # Enable touchpad support (enabled default in most desktopManager).
@@ -72,7 +73,7 @@
       xfce = {
         enable = true;
         noDesktop = true;
-        enableXfwm = false; # not as windowManager
+        enableXfwm = false; # prevent running as windowManager
       };
     };
 
@@ -82,9 +83,8 @@
         enable = true;
         package = pkgs.i3-gaps;
         extraPackages = with pkgs; [
-          rofi #application launcher 
-          tint2
-          i3status # gives you the default i3 status bar
+          rofi #application launcher
+          i3status-rust # gives you the default i3 status bar
           i3lock #default i3 screen locker
           i3blocks #if you are planning on using i3blocks over i3status
           arandr # xrandr ui
@@ -117,7 +117,7 @@
   environment.systemPackages = with pkgs; [
 
     # code
-    libcap glibc.static go gcc 
+    libcap glibc.static go gcc glibc
 
     # shell
     git
@@ -164,6 +164,9 @@
     
     # monitoring
     telegraf
+
+    # backup
+    velero
     
     # Kubernetes
     kubectl kubectx kubernetes-helm lens k3d
@@ -191,7 +194,6 @@
       
     # networking
     networkmanager
-    networkmanager_dmenu
     nextdns
     wireguard-tools
     wireshark termshark
@@ -211,7 +213,7 @@
   services.picom = {
     enable = true;
     fade = true;
-    inactiveOpacity = 0.9;
+    inactiveOpacity = 0.8;
     shadow = true;
     fadeDelta = 4;
   };
@@ -253,5 +255,14 @@
   #  enable = true;
   #  dropPrivileges = true;
   #};
+
+  services = {
+      syncthing = {
+          enable = true;
+          user = "master";
+          dataDir = "/home/master/sync";
+          configDir = "/home/master/sync/.config/syncthing";
+      };
+  };
 
 }

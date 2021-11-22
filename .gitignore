@@ -1,3 +1,5 @@
 */*/.waypoint
 *.qcow2
 result
+nixpkgs
+nixos

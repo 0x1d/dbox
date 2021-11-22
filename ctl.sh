@@ -12,47 +12,65 @@
 ##  ░ ░                                        
 ## 
 ## A DISCO Environment
-## 
-##|------------------------------------------------------------
+## > Decentralized Infrastructure for Serverless Compute Operations
+##-----------------------------------------------------------------
 ## Consul UI:   http://localhost:8500/ui
 ## Nomad UI:    http://localhost:4646/ui
-##|------------------------------------------------------------
+##-----------------------------------------------------------------
 ## 
 
-## info		Display this info
-function info {
-    clear
-    sed -n 's/^##//p' ctl.sh
-    printf "\n------------------------------------------------------------\n"
-    #tree -d
-    nomad node status
-    printf "\n\n"
-    read -p 'Choose: ';
-    echo "";
-    ./ctl.sh ${REPLY}
+## install          Install ctl
+function install {
+    mkdir -p ~/bin
+    cp ./ctl.sh ~/bin/ctl
 }
 
-## nwa		Start network agent
-function nwa {
-    consul agent -dev
+## config           Configure .config
+function config {
+    cp -r dotfiles/config/* ${HOME}/.config
 }
 
-## wsa		Start workload scheduling agent
-function wsa {
-    nomad agent -dev-connect
+## dev              asdwd
+
+function dev {
+    docker-compose -f dev/compose.yaml up -d
 }
 
-## run		Run workload
+## run
 function run {
     pushd jobs 
-        ls | fzf | xargs nomad job run 
+        ls \
+        | fzf --height=10 --layout=reverse \
+        | xargs nomad job run 
     popd
     ctl_loop
 }
 
-function ctl_loop {
-    read -p "Press any key to continue."
-    info
+## status
+function status {
+    nomad status \
+    | fzf --height=10 --layout=reverse \
+    | awk '{ print $1}' | xargs nomad status 
 }
 
-${@:-info}
+function ctl_info {
+    clear
+    sed -n 's/^##//p' ctl.sh 
+    printf "\n-----------------------------------------------------------------\n\n"
+    #tree -d
+    nomad status
+    printf "\n"
+    printf "\n-----------------------------------------------------------------\n\n"
+}
+
+function ctl_loop {
+    ctl_info
+    read -p 'Choose: ';
+    ./ctl.sh ${REPLY}
+}
+
+function ctl_continue {
+    read -p "Press any key to continue."
+}
+
+${@:-ctl_loop}
