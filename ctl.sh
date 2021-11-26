@@ -19,38 +19,36 @@
 ##-----------------------------------------------------------------
 ## 
 
-## install          Install ctl
+## install          Install
 function install {
-    mkdir -p ~/bin
-    cp ./ctl.sh ~/bin/ctl
+    sudo cp ./ctl.sh /bin/yak
 }
 
-## config           Configure .config
+## config           Configure ~
 function config {
     cp -r dotfiles/config/* ${HOME}/.config
 }
 
-## dev              asdwd
-
+## dev              Development mode
 function dev {
     docker-compose -f dev/compose.yaml up -d
 }
 
-## run
+## run              Run a job
 function run {
     pushd jobs 
         ls \
         | fzf --height=10 --layout=reverse \
         | xargs nomad job run 
     popd
-    ctl_loop
 }
 
-## status
-function status {
+## service          Interact with service
+function service {
     nomad status \
     | fzf --height=10 --layout=reverse \
-    | awk '{ print $1}' | xargs nomad status 
+    | awk '{ print $1}' | xargs nomad status
+    ctl_continue
 }
 
 function ctl_info {
@@ -58,7 +56,7 @@ function ctl_info {
     sed -n 's/^##//p' ctl.sh 
     printf "\n-----------------------------------------------------------------\n\n"
     #tree -d
-    nomad status
+    nomad node status
     printf "\n"
     printf "\n-----------------------------------------------------------------\n\n"
 }
@@ -67,6 +65,7 @@ function ctl_loop {
     ctl_info
     read -p 'Choose: ';
     ./ctl.sh ${REPLY}
+    ctl_loop
 }
 
 function ctl_continue {

@@ -20,3 +20,9 @@ cluster-create:
 	kubectl cluster-info
 not-cluster:
 	k3d cluster delete demostream
+
+##cni-install	for consul-connect integration
+cni-install:
+	curl -L -o cni-plugins.tgz "https://github.com/containernetworking/plugins/releases/download/v1.0.1/cni-plugins-linux-amd64-v1.0.1.tgz"
+	sudo mkdir -p /opt/cni/bin
+	sudo tar -C /opt/cni/bin -xzf cni-plugins.tgz

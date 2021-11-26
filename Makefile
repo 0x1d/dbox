@@ -24,9 +24,10 @@ configure:
 
 install: configure
 	sudo cp os/configuration.nix /etc/nixos/configuration.nix
+	sudo cp os/ui.hcl /etc/nomad
 	sudo nixos-rebuild switch
 
-update:
+rebuild:
 	nixos-rebuild
 
 TARGETS = $(shell ls apps)

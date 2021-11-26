@@ -12,7 +12,7 @@
 #  the <literal>DynamicUser</literal> feature of systemd which directly
 #  manages and operates on <literal>StateDirectory</literal>.
 
-#data_dir  = "/var/lib/nomad"
+data_dir  = "/var/lib/nomad"
 
 bind_addr = "0.0.0.0" # the default
 
@@ -31,7 +31,13 @@ plugin "raw_exec" {
   }
 }
 
-consul {
-  address = "10.0.42.1:8500"
+plugin "docker" {
+  config {
+    enabled = true
+  }
 }
+
+#consul {
+#  address = "10.0.42.1:8500"
+#}
 

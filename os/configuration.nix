@@ -59,7 +59,7 @@
     # Enable touchpad support (enabled default in most desktopManager).
     libinput.enable = true;
 
-    # Combine xfce and i3
+    #  lightdm + xfce + i3 = 8-)
     displayManager = {
         defaultSession = "xfce+i3";
         lightdm = {
@@ -84,7 +84,8 @@
         package = pkgs.i3-gaps;
         extraPackages = with pkgs; [
           rofi #application launcher
-          i3status-rust # gives you the default i3 status bar
+          i3status # gives you the default i3 status bar
+          #i3status-rs # TODO configuration
           i3lock #default i3 screen locker
           i3blocks #if you are planning on using i3blocks over i3status
           arandr # xrandr ui
@@ -102,14 +103,12 @@
   sound.enable = true;
   hardware.pulseaudio.enable = true;
 
-  # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.master = {
     isNormalUser = true;
     shell = "${pkgs.fish}/bin/fish";
     extraGroups = [ "wheel" "docker" ]; # Enable ‘sudo’ for the user.
   };
 
-  # uhoh dont tell rms
   nixpkgs.config.allowUnfree = true;
 
   # List packages installed in system profile. To search, run:
@@ -120,6 +119,7 @@
     libcap glibc.static go gcc glibc
 
     # shell
+    direnv
     git
     fish
     starship
@@ -171,22 +171,26 @@
     # Kubernetes
     kubectl kubectx kubernetes-helm lens k3d
 
+    # devel
     gnumake
     ansible
     vscode-with-extensions
     etcher
     gparted
 
-    # X11 extra
+    # tools
     gimp
     pothos
     obsidian
-    syncthing
     obs-studio obs-gstreamer obs-multi-rtmp
+
+    # sdr
     rtl-sdr soapysdr soapyhackrf 
     hackrf kalibrate-hackrf  kalibrate-rtl
     gqrx cubicsdr
     rtl_433
+
+    # ui
     lxappearance
     juno-theme
     barrier
@@ -198,8 +202,9 @@
     wireguard-tools
     wireshark termshark
 
-    # crypto stuff
+    # decloud
     exodus
+    syncthing
     #fscryptctl
     
     # gaming
@@ -210,6 +215,7 @@
     steam-run-native
   ];
 
+  # Compositor
   services.picom = {
     enable = true;
     fade = true;
@@ -244,17 +250,6 @@
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "21.05"; # Did you read the comment?
-
-  #systemd.services.consul.serviceConfig.Type = "notify";
-  #services.consul = {
-  #  enable = true;
-  #  dropPrivileges = true;
-  #};
-
-  #services.nomad = {
-  #  enable = true;
-  #  dropPrivileges = true;
-  #};
 
   services = {
       syncthing = {

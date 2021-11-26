@@ -1,5 +1,9 @@
 {config, pkgs, ...}:
  {
+   imports =[
+      ./hashi.nix
+    ];
+
    # root filesytem
    fileSystems."/".label = "vmdisk";
  
@@ -19,14 +23,9 @@
      wheelNeedsPassword = false;
    };
    
-   services.consul = {
-     enable = true;
-     dropPrivileges = true;
-   };
-
-   services.nomad = {
-     enable = true;
-     dropPrivileges = true;
-   };
-
+#   services.consul = {
+#     enable = true;
+#     dropPrivileges = true;
+#   };
+  
  }
