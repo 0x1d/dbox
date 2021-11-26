@@ -34,17 +34,30 @@ function dev {
     docker-compose -f dev/compose.yaml up -d
 }
 
-## run              Run a job
-function run {
-    pushd jobs 
+##
+## job              Interact with workload
+function job {
+    pushd jobs
         ls \
         | fzf --height=10 --layout=reverse \
-        | xargs nomad job run 
+        | xargs nomad job $@ 
     popd
+    ctl_continue
 }
 
-## service          Interact with service
-function service {
+##    plan
+function plan {
+    job plan 
+}
+
+##    run
+function run {
+    job run
+}
+
+##
+## status           Inspect workload
+function status {
     nomad status \
     | fzf --height=10 --layout=reverse \
     | awk '{ print $1}' | xargs nomad status
@@ -55,8 +68,9 @@ function ctl_info {
     clear
     sed -n 's/^##//p' ctl.sh 
     printf "\n-----------------------------------------------------------------\n\n"
-    #tree -d
     nomad node status
+    printf "\n-----------------------------------------------------------------\n\n"
+    nomad status
     printf "\n"
     printf "\n-----------------------------------------------------------------\n\n"
 }
