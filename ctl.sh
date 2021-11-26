@@ -45,12 +45,12 @@ function job {
     ctl_continue
 }
 
-##    plan
+##  └── plan
 function plan {
     job plan 
 }
 
-##    run
+##  └── run
 function run {
     job run
 }
