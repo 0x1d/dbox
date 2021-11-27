@@ -90,6 +90,8 @@
           i3blocks #if you are planning on using i3blocks over i3status
           arandr # xrandr ui
           nitrogen # wallpaper
+          pavucontrol # pulse audio volume control for xfce
+          ncpamixer # ncurses mixer
         ];
       };
     };
@@ -121,33 +123,39 @@
     # shell
     direnv
     git
-    fish
-    starship
-    fzf
-    curl
-    wget
-    tree
-    ranger
-    tmux
-    vim
+    fish starship
+    tree fzf
+    curl wget
+    
+    tmux ranger vim
     spacevim
     alacritty
     bpytop
     iotop
     nmap
     dig
+
+    # viewers
+    imv
+    emulsion
+    vlc
+
+    # streaming
+    oven-media-engine
+    streamlink
+    pitivi
+    ffmpeg-full
     
     # X11
+    xorg.xkill
     picom
     pcmanfm
+    thunar
     brave
     firefox
     qutebrowser
     chromium
     chromium-xorg-conf
-    ffmpeg-full
-    vlc
-    xorg.xkill
         
     # virtualization
     docker
@@ -156,11 +164,13 @@
     # Hashistack
     packer
     consul
+    consul-template
     nomad
     nomad-autoscaler
     vault
     terraform
     waypoint
+    hashi-ui
     
     # monitoring
     telegraf
@@ -180,11 +190,11 @@
 
     # tools
     gimp
-    pothos
     obsidian
     obs-studio obs-gstreamer obs-multi-rtmp
 
     # sdr
+    pothos
     rtl-sdr soapysdr soapyhackrf 
     hackrf kalibrate-hackrf  kalibrate-rtl
     gqrx cubicsdr

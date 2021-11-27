@@ -23,8 +23,9 @@ configure:
 	cp -r dotfiles/config/* ${HOME}/.config
 
 install: configure
-	sudo cp os/configuration.nix /etc/nixos/configuration.nix
-	sudo cp os/ui.hcl /etc/nomad
+	sudo mkdir -p /etc/nomad/
+	sudo cp os/dbox.nix /etc/nixos/configuration.nix
+	sudo cp -r os/etc/nomad/* /etc/nomad/
 	sudo nixos-rebuild switch
 
 rebuild:

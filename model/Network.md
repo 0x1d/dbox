@@ -1,1 +1,0 @@
-A set of [[Node|nodes]] forming an independent [[System|system]], able to provision and deliver streams.

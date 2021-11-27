@@ -1,2 +1,0 @@
-- [[launchpad]]
-- [[resources]]

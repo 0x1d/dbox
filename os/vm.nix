@@ -22,10 +22,5 @@
      enable = true;
      wheelNeedsPassword = false;
    };
-   
-#   services.consul = {
-#     enable = true;
-#     dropPrivileges = true;
-#   };
   
  }

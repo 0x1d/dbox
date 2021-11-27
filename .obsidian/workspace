@@ -9,7 +9,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "model/Destination.md",
+            "file": "model/Consumer.md",
             "mode": "source"
           }
         },
@@ -21,11 +21,11 @@
         "state": {
           "type": "localgraph",
           "state": {
-            "file": "model/Destination.md",
+            "file": "model/Consumer.md",
             "options": {
               "collapse-filter": true,
               "search": "",
-              "localJumps": 1,
+              "localJumps": 5,
               "localBacklinks": true,
               "localForelinks": true,
               "localInterlinks": false,
@@ -39,12 +39,12 @@
               "textFadeMultiplier": 0,
               "nodeSizeMultiplier": 1,
               "lineSizeMultiplier": 1,
-              "collapse-forces": true,
-              "centerStrength": 0.518713248970312,
-              "repelStrength": 10,
-              "linkStrength": 1,
-              "linkDistance": 250,
-              "scale": 1,
+              "collapse-forces": false,
+              "centerStrength": 0.653846153846154,
+              "repelStrength": 15.6410256410256,
+              "linkStrength": 0.713675213675214,
+              "linkDistance": 289,
+              "scale": 0.9999999999999986,
               "close": false
             }
           }
@@ -105,7 +105,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "model/Destination.md",
+                "file": "model/Consumer.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -123,17 +123,17 @@
     "width": 300,
     "collapsed": true
   },
-  "active": "abbd63b005cf44fc",
+  "active": "4130ab4b9b046504",
   "lastOpenFiles": [
-    "model/Destination.md",
+    "model/Consumer.md",
     "model/Network.md",
-    "model/entrypoint/entrypoint.md",
-    "model/Stream.md",
-    "model/System.md",
-    "model/Core.md",
-    "model/User.md",
-    "model/Provider.md",
+    "model/Node.md",
+    "model/Processing.md",
+    "model/actor/model.md",
+    "model/entrypoint/launchpad.md",
     "model/Publishing.md",
-    "model/architecture.md"
+    "model/URL.md",
+    "model/Source.md",
+    "model/User.md"
   ]
 }

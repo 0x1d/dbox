@@ -1,1 +1,0 @@
-A [[Network|network]] address to which a [[Stream]] is sent for [[Processing|processing]] or [[Publishing]].
