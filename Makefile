@@ -1,3 +1,6 @@
+it: configure
+so: install
+
 info:
 	./ctl.sh
 
@@ -24,7 +27,7 @@ configure:
 
 install: configure
 	sudo mkdir -p /etc/nomad/
-	sudo cp os/dbox.nix /etc/nixos/configuration.nix
+	sudo cp -r os/*.nix /etc/nixos/
 	sudo cp -r os/etc/nomad/* /etc/nomad/
 	sudo nixos-rebuild switch
 
@@ -34,5 +37,3 @@ rebuild:
 TARGETS = $(shell ls apps)
 $(TARGETS):
 	./ctl.sh up apps/$@
-
-include dev.mk

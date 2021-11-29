@@ -1,70 +1,75 @@
 #!/usr/bin/env bash
-## 
-## ██████╗ ██████╗  ██████╗ ██╗  ██╗
-## ██╔══██╗██╔══██╗██╔═══██╗╚██╗██╔╝
-## ██║  ██║██████╔╝██║   ██║ ╚███╔╝ 
-## ██║  ██║██╔══██╗██║   ██║ ██╔██╗ 
-## ██████╔╝██████╔╝╚██████╔╝██╔╝ ██╗
-## ╚═════╝ ╚═════╝  ╚═════╝ ╚═╝  ╚═╝             
-##                 
-## Another Open Source DISCO Environment
+##
+## ▓██   ██▓ ▄▄▄       ██ ▄█▀ ▒█████    ██████ 
+##  ▒██  ██▒▒████▄     ██▄█▒ ▒██▒  ██▒▒██    ▒ 
+##   ▒██ ██░▒██  ▀█▄  ▓███▄░ ▒██░  ██▒░ ▓██▄   
+##   ░ ▐██▓░░██▄▄▄▄██ ▓██ █▄ ▒██   ██░  ▒   ██▒
+##   ░ ██▒▓░ ▓█   ▓██▒▒██▒ █▄░ ████▓▒░▒██████▒▒
+##    ██▒▒▒  ▒▒   ▓▒█░▒ ▒▒ ▓▒░ ▒░▒░▒░ ▒ ▒▓▒ ▒ ░
+##  ▓a██ ░▒░   ▒   ▒▒ ░░ ░▒ ▒░  ░ ▒ ▒░ ░ ░▒  ░ ░
+##  ▒ ▒ ░░    ░   ▒   ░ ░░ ░ ░ ░ ░ ▒  ░  ░  ░  
+##  ░ ░           ░  ░░  ░       ░ ░        ░  
+##  ░ ░                                        
+## A DISCO Environment
 ##
 ##-----------------------------------------------------------------
 ## Consul UI:   http://localhost:8500/ui
 ## Nomad UI:    http://localhost:4646/ui
 ##-----------------------------------------------------------------
 
-
-## install          Install
-install () {
-    sudo cp ./ctl.sh /bin/yak
-}
-
 ## config           dotify ~
-config () {
+function config {
     cp -r dotfiles/config/* ${HOME}/.config
 }
 
 ## dev              Compose up
-dev () {
+function dev {
     docker-compose -f dev/compose.yaml up -d
 }
 ## not-dev                  down
-not-dev () {
+function not-dev {
     docker-compose  -f dev/compose.yaml down --remove-orphans
+}
+## lonewolf         Run standalone Nomad agent
+function lonewolf {
+    sudo nomad agent \
+        -server -client \
+        -data-dir=/var/lib/nomad \
+        -bootstrap-expect=1
 }
 
 ##-----------------------------------------------------------------
 
+
 ## job             Workload Scheduling
-job () {
+function job {
     pushd jobs
         ls \
         | fzf --height=10 --layout=reverse \
         | xargs nomad job $@ 
     popd
-    ctl_continue
+  ctl_continue
 }
 
 ##  └── plan
-plan () {
+function plan {
     job plan 
 }
 
 ##  └── run
-run () {
+function run {
     job run
 }
 
 ## status
- status () {
+function status {
     nomad status \
     | fzf --height=10 --layout=reverse \
-    | awk '() { print $1}' | xargs nomad status
+    | awk '{ print $1}' | xargs nomad status
     ctl_continue
 }
 
-ctl_info () {
+function ctl_info {
     clear
     sed -n 's/^##//p' ctl.sh 
     printf "\n-----------------------------------------------------------------\n\n"
@@ -75,14 +80,14 @@ ctl_info () {
     printf "\n-----------------------------------------------------------------\n\n"
 }
 
-ctl_loop () {
+function ctl_loop {
     ctl_info
     read -p 'Choose: ';
-    ./ctl.sh $() {REPLY}
+    ./ctl.sh ${REPLY}
     ctl_loop
 }
 
-ctl_continue () {
+function ctl_continue {
     read -p "Press any key to continue."
 }
 

@@ -14,9 +14,9 @@
         cni-plugins
         dnsname-cni
       ];
-      extraSettingsPaths = [
-          "/etc/nomad"
-      ];
+      #extraSettingsPaths = [
+      #    "/etc/nomad"
+      #];
       settings = {
           bind_addr = "0.0.0.0";
           ui = {
