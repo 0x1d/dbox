@@ -9,7 +9,6 @@
     [
       ./hardware-configuration.nix
       ./dbox.nix
-      ./hashi.nix
     ];
 
 
