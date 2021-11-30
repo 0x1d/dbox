@@ -26,10 +26,11 @@ configure:
 	cp -r dotfiles/config/* ${HOME}/.config
 
 install: configure
-	sudo mkdir -p /etc/nomad/
 	sudo cp -r os/*.nix /etc/nixos/
-	sudo cp -r os/etc/nomad/* /etc/nomad/
 	sudo nixos-rebuild switch
+
+nomad:
+	sudo cp -r os/etc/nomad.d/* /etc/nomad.d
 
 rebuild:
 	nixos-rebuild

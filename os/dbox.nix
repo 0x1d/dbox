@@ -89,6 +89,7 @@
     fish starship
     tree fzf
     curl wget
+    unzip
     
     tmux ranger vim
     spacevim

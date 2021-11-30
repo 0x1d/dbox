@@ -10,6 +10,7 @@
 ##  ▒ ▒ ░░    ░   ▒   ░ ░░ ░ ░ ░ ░ ▒  ░  ░  ░  
 ##  ░ ░           ░  ░░  ░       ░ ░        ░  
 ##  ░ ░                                        
+##
 ## A DISCO Environment
 ##
 ##-----------------------------------------------------------------
@@ -30,12 +31,21 @@ function dev {
 function not-dev {
     docker-compose  -f dev/compose.yaml down --remove-orphans
 }
-## lonewolf         Run standalone Nomad agent
-function lonewolf {
+
+## server           Bootstrap control-plane
+function server {
     sudo nomad agent \
-        -server -client \
-        -data-dir=/var/lib/nomad \
-        -bootstrap-expect=1
+        -server \
+        -config=./os/etc/nomad.d/server.hcl \
+        -bootstrap-expect=3
+}
+
+## client           Join data-plane
+function client {
+    sudo nomad agent \
+        -client \
+        -config=./os/etc/nomad.d/client.hcl \
+        join 
 }
 
 ##-----------------------------------------------------------------

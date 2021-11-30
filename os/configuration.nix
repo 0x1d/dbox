@@ -11,14 +11,6 @@
       ./dbox.nix
     ];
 
-
-  # Use the GRUB 2 boot loader.
-  #boot.loader.grub.enable = true;
-  #boot.loader.grub.version = 2;
-  #boot.loader.grub.efiSupport = true;
-  #boot.loader.grub.efiInstallAsRemovable = true;
-  #boot.loader.efi.efiSysMountPoint = "/boot/efi";
-  # Define on which hard drive you want to install Grub.
   boot.loader.grub.device = "/dev/sda"; # or "nodev" for efi only
   boot.loader.systemd-boot.enable = true;
 
@@ -26,6 +18,8 @@
   networking.hostName = "yakzero";
   #networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
   networking.useDHCP = false;
+
+  # CUSTOM interfaces
   networking.interfaces.enp0s31f6.useDHCP = true;
 
   i18n.defaultLocale = "en_US.UTF-8";
