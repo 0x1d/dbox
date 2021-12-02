@@ -32,9 +32,6 @@ install: configure
 nomad:
 	sudo cp -r os/etc/nomad.d/* /etc/nomad.d
 
-rebuild:
-	nixos-rebuild
-
 TARGETS = $(shell ls apps)
 $(TARGETS):
 	./ctl.sh up apps/$@

@@ -15,9 +15,9 @@
   boot.loader.systemd-boot.enable = true;
 
   time.timeZone = "Europe/Zurich";
-  networking.hostName = "yakzero";
+  networking.hostName = "yak0";
   #networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
-  networking.useDHCP = false;
+  #networking.useDHCP = false;
 
   # CUSTOM interfaces
   networking.interfaces.enp0s31f6.useDHCP = true;
