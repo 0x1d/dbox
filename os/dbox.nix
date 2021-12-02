@@ -4,7 +4,7 @@
    
   virtualisation.docker.enable = true;
 
-  # OpenGL for steam support
+  # OpenGL supprt (needed for Steam)
   hardware.opengl.enable = true;
   hardware.opengl.driSupport32Bit = true;
 
@@ -67,7 +67,12 @@
   users.users.master = {
     isNormalUser = true;
     shell = "${pkgs.fish}/bin/fish";
-    extraGroups = [ "wheel" "docker" ]; # Enable ‘sudo’ for the user.
+    extraGroups = [ "wheel" "docker" ];
+  };
+  users.users.doctor = {
+    isNormalUser = true;
+    shell = "${pkgs.fish}/bin/fish";
+    extraGroups = [ "wheel" "docker" ];
   };
 
   nixpkgs.config.allowUnfree = true;
@@ -79,6 +84,8 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
+
+    nixos-generators
 
     # code
     libcap glibc.static go gcc glibc
