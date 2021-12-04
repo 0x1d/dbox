@@ -14,23 +14,32 @@
 ## A DISCO Environment
 ##
 ##-----------------------------------------------------------------
-## Consul UI:   http://localhost:8500/ui
-## Nomad UI:    http://localhost:4646/ui
+## Consul:    http://$hostname:8500/ui
+## Nomad:     http://$hostname:4646/ui
+## Syncthing: http://$hostname:8384/
 ##-----------------------------------------------------------------
 
-## config           dotify ~
+## config           Configure node
 function config {
+    spacevim dotfiles/config
+}
+## mkInstall        Install this yak
+function mkInstall {
     cp -r dotfiles/config/* ${HOME}/.config
+    make install
 }
 
-## dev              up
-function dev {
+##-----------------------------------------------------------------
+
+## dcu              docker-compose up
+function dcu {
     docker-compose -f dev/compose.yaml up -d
 }
-## not-dev          down
-function not-dev {
-    docker-compose  -f dev/compose.yaml down --remove-orphans
+## dcd              docker-compose down
+function dcd {
+    docker-compose -f dev/compose.yaml down --remove-orphans
 }
+##-----------------------------------------------------------------
 
 ## server           Bootstrap control-plane
 function server {
@@ -51,7 +60,7 @@ function client {
 ##-----------------------------------------------------------------
 
 
-## job             Workload Scheduling
+## job              Workload Scheduling
 function job {
     pushd jobs
         ls \
@@ -98,7 +107,7 @@ function ctl_loop {
 }
 
 function ctl_continue {
-    read -p "Press any key to continue."
+    read -p "Press [ENTER] to continue."
 }
 
 ${@:-ctl_loop}

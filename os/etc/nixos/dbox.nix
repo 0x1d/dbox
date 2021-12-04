@@ -120,7 +120,6 @@
     # X11
     xorg.xkill
     picom
-    pcmanfm
     brave
     firefox
     qutebrowser
@@ -212,22 +211,23 @@
     enableSSHSupport = true;
   };
 
-  # List services that you want to enable:
+  # --------------------------------------------------------------------------
+  # Networking
 
-  # Enable the OpenSSH daemon.
   services.openssh.enable = true;
 
-  networking.networkmanager.enable = true;
   programs.nm-applet.enable = true;
+  networking.networkmanager.enable = true;
 
   # Open ports in the firewall.
-  networking.firewall.allowedTCPPorts = [ 
+  networking.firewall.allowedTCPPorts = [
+    22
     4646 
     4647 
     4648 
   ];
   # networking.firewall.allowedUDPPorts = [ ... ];
-  # networking.firewall.enable = false;
+  networking.firewall.enable = true;
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
@@ -241,8 +241,8 @@
       syncthing = {
           enable = true;
           user = "master";
-          dataDir = "/home/master/sync";
-          configDir = "/home/master/sync/.config/syncthing";
+          dataDir = "/home/master/Sync";
+          configDir = "/home/master/.config/syncthing";
       };
   };
 

@@ -1,1 +1,1 @@
-Goal: A portable system with predefined purpose for rapid provisioning of infrastructure and ad-hoc multi-topology networking.
+Goal: A portable system with predefined purpose for rapid provisioning of infrastructure and ad-hoc multi-topology networking for localized or distributed computing solutions.
