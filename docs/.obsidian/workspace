@@ -9,7 +9,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "contraption.md",
+            "file": "sprocket.md",
             "mode": "source"
           }
         },
@@ -21,7 +21,7 @@
         "state": {
           "type": "localgraph",
           "state": {
-            "file": "contraption.md",
+            "file": "sprocket.md",
             "options": {
               "collapse-filter": true,
               "search": "",
@@ -105,7 +105,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "contraption.md",
+                "file": "sprocket.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -125,10 +125,10 @@
   },
   "active": "1e8d28e249f4df48",
   "lastOpenFiles": [
+    "sprocket.md",
     "contraption.md",
     "ideas.md",
     "purpose.md",
-    "sprockets.md",
     "landscape.md",
     "hexabox.svg"
   ]
