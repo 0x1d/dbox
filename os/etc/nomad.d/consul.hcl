@@ -2,7 +2,7 @@
 # that is part of Nomad's internal default configuration for Consul integration.
 consul {
   # The address to the Consul agent.
-  address = "127.0.0.1:8500"
+  address = "0.0.0.0:8500"
 
   # The service name to register the server and client with Consul.
   server_service_name = "nomad"

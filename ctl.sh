@@ -23,11 +23,11 @@ function config {
     cp -r dotfiles/config/* ${HOME}/.config
 }
 
-## dev              Compose up
+## dev              up
 function dev {
     docker-compose -f dev/compose.yaml up -d
 }
-## not-dev                  down
+## not-dev          down
 function not-dev {
     docker-compose  -f dev/compose.yaml down --remove-orphans
 }

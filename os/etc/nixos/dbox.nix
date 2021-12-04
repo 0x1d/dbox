@@ -188,11 +188,11 @@
     #fscryptctl
     
     # gaming
-    sc-controller
-    eidolon # Provides a single TUI-based registry for drm-free, wine and steam games on linux, accessed through a rofi launch menu.
-    steam
-    steam-run
-    steam-run-native
+    #sc-controller
+    #eidolon # Provides a single TUI-based registry for drm-free, wine and steam games on linux, accessed through a rofi launch menu.
+    #steam
+    #steam-run
+    #steam-run-native
   ];
 
   # Compositor
@@ -216,6 +216,9 @@
 
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;
+
+  networking.networkmanager.enable = true;
+  programs.nm-applet.enable = true;
 
   # Open ports in the firewall.
   networking.firewall.allowedTCPPorts = [ 
