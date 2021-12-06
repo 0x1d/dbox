@@ -1,6 +1,10 @@
-# Landscape
-## Planes
+# Planes of Compute
+
 ### Control
-### Stream
+Nomad, Consul, Vault and Boundary Server Agents
+
 ### Data
+Nomad client agents
+
 ### Access
+via Boundary

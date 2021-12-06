@@ -14,28 +14,27 @@
 ## A DISCO Environment
 ##
 ##-----------------------------------------------------------------
-## Consul:    http://$hostname:8500/ui
-## Nomad:     http://$hostname:4646/ui
-## Syncthing: http://$hostname:8384/
-##-----------------------------------------------------------------
+# Consul:    http://$hostname:8500/ui
+# Nomad:     http://$hostname:4646/ui
+# Syncthing: http://$hostname:8384/
+#-----------------------------------------------------------------
 
 ## config           Configure node
 function config {
     spacevim dotfiles/config
 }
-## mkInstall        Install this yak
-function mkInstall {
-    cp -r dotfiles/config/* ${HOME}/.config
-    make install
+## provision        Bootstrap System
+function provision {
+    make it so
 }
 
 ##-----------------------------------------------------------------
 
-## dcu              docker-compose up
-function dcu {
+## dcud             Daemonized Compose
+function dcud {
     docker-compose -f dev/compose.yaml up -d
 }
-## dcd              docker-compose down
+## dcd              Compose down
 function dcd {
     docker-compose -f dev/compose.yaml down --remove-orphans
 }

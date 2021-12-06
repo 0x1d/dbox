@@ -21,8 +21,8 @@ default_border pixel
 
 
 exec --no-startup-id nitrogen --restore
-exec --no-startup-id alacritty --class ctlsh --working-directory ~/src/dbox -e ./ctl.sh
-exec --no-startup-id alacritty --class ctlsh --working-directory ~/src/dbox -e bpytop
+exec --no-startup-id alacritty --class ctlsh --working-directory ~/dbox -e ./ctl.sh
+exec --no-startup-id alacritty --class ctlsh --working-directory ~/ -e bpytop
 exec --no-startup-id obsidian
 exec --no-startup-id code
 

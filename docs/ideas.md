@@ -3,7 +3,8 @@
 ## Freedom
 > .. users have the freedom to run, copy, distribute, study, change and improve the software ... [Free Software](http://www.gnu.org/philosophy/free-sw.html)
 
-> [Justice](http://www.gnu.org/philosophy/free-software-even-more-important.html)
+Further Reading:
+- http://www.gnu.org/philosophy/free-software-even-more-important.html
 
 
 ## Principles

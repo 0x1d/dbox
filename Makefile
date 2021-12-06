@@ -1,8 +1,24 @@
+SRCD ?= $(shell pwd)
+
+default: ctl
+
 it: configure
 so: install
 
-info:
+ctl:
 	./ctl.sh
+
+configure:
+	cp -r dotfiles/config/* ${HOME}/.config
+
+install: configure
+	sudo cp -r os/etc/nixos/dbox.nix /etc/nixos/
+	sudo nixos-rebuild switch
+
+nomad:
+	sudo cp -r os/etc/nomad.d/* /etc/nomad.d
+
+# ------------------------------------------------------
 
 nixpkgs:
 	git clone https://github.com/NixOS/nixpkgs.git nixpkgs
@@ -14,23 +30,15 @@ iso: nixpkgs
 
 image-aarch64:
 	cd nixpkgs/nixos && nix-build nixos \
-		-I nixos=${PWD}/os/configuration.nix \
+		-I nixos=${SRCD}/os/configuration.nix \
 		nixos-config=nixos/modules/installer/sd-card/sd-image-aarch64.nix \
 		-A config.system.build.sdImage
 
 vm:
-	NIXOS_CONFIG=${PWD}/os/vm.nix nixos-rebuild -I nixos=${PWD}/os/configuration.nix build-vm
+	NIXOS_CONFIG=${SRCD}/os/vm.nix nixos-rebuild -I nixos=${SRCD}/os/configuration.nix build-vm
 	./result/bin/run-vmhost-vm
 
-configure:
-	cp -r dotfiles/config/* ${HOME}/.config
-
-install: configure
-	sudo cp -r os/etc/nixos/dbox.nix /etc/nixos/
-	sudo nixos-rebuild switch
-
-nomad:
-	sudo cp -r os/etc/nomad.d/* /etc/nomad.d
+# ------------------------------------------------------
 
 TARGETS = $(shell ls apps)
 $(TARGETS):

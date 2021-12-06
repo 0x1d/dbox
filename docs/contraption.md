@@ -1,14 +1,10 @@
 # Contraption
 
-A contraption is a system that emerges from sprocket compositions.
+A contraption is composition of [[sprocket|sprockets]].
+
 
 ## Elements
-- [[Sprockets|spocket|]]
-- Qontinuum
-- Shroud
-
-## Qontinuum
-a.k.a. Distributed Message Queue
-
-## Shroud
-a.k.a. virtual private cloud
+- Sprockets a.k.a. sensors, actuators
+- Qontinuum a.k.a. Distributed Message Queue #mqtt
+- Shroud a.k.a. software defined networking #sdn
+- Conduct a.k.a. #flow 
