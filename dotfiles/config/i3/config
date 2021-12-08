@@ -20,11 +20,16 @@ default_border pixel
 #font pango:DejaVu Sans Mono 8
 
 
+#alacritty
+#exec --no-startup-id alacritty --class ctlsh --working-directory ~/dbox -e ./ctl.sh
+#exec --no-startup-id alacritty --class ctlsh --working-directory ~/ -e bpytop
 exec --no-startup-id nitrogen --restore
-exec --no-startup-id alacritty --class ctlsh --working-directory ~/dbox -e ./ctl.sh
-exec --no-startup-id alacritty --class ctlsh --working-directory ~/ -e bpytop
 exec --no-startup-id obsidian
 exec --no-startup-id code
+
+# xfce
+exec --no-startup-id xfce4-terminal --title ctlsh --default-working-directory ~/ -x bpytop
+exec --no-startup-id xfce4-terminal --title ctlsh --default-working-directory ~/src/dbox -x ~/src/dbox/ctl.sh
 
 #exec --no-startup-id compton -d --config /home/master/.config/compton/config
 
@@ -40,7 +45,7 @@ floating_modifier $mod
 
 # start a terminal
 #bindsym $mod+Return exec i3-sensible-terminal
-bindsym $mod+Return exec alacritty
+bindsym $mod+Return exec xfce4-terminal
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -198,16 +203,15 @@ mode "$mode_system" {
     bindsym Escape mode "default"
 }
 
-for_window [class="ctlsh"] move container to workspace $ws1
+for_window [title="ctlsh"] move container to workspace $ws1
 for_window [class="qt5ct|Lxappearance|^Gpick$|Pamac|Peek|Nitrogen"] floating enable
 for_window [window_role="^Preferences$"] floating enable
-#assign [class="Alacritty"] $ws1
 assign [class="obsidian"] $ws9
 assign [class="Code"] $ws3
 assign [class="Thunar|PCManFM|Firefox|Chromium|Brave"] $ws4
 assign [class="Lens"] $ws9
 
-#for_window [class="Alacritty"] move container to workspace $ws1
+for_window [title="ctlsh"] move container to workspace $ws1
 for_window [class="Code"] move container to workspace $ws3
 for_window [class="vlc"] move container to workspace $ws6
 for_window [class="Steam"] move container to workspace $ws7

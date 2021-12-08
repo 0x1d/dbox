@@ -100,7 +100,6 @@
     
     tmux ranger vim
     spacevim
-    alacritty
     bpytop
     iotop
     nmap
@@ -142,7 +141,7 @@
     hashi-ui
     
     # monitoring
-    telegraf
+    #telegraf
 
     # backup
     velero
@@ -172,6 +171,10 @@
     # ui
     lxappearance
     juno-theme
+    sweet
+    beauty-line-icon-theme
+
+    #  util
     barrier
     filelight
       
