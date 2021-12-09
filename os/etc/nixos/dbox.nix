@@ -144,10 +144,11 @@
     #telegraf
 
     # backup
-    velero
+    #velero
     
     # Kubernetes
     kubectl kubectx kubernetes-helm lens k3d
+    google-cloud-sdk
 
     # devel
     gnumake
@@ -225,9 +226,12 @@
   # Open ports in the firewall.
   networking.firewall.allowedTCPPorts = [
     22
+    80
+    443
     4646 
     4647 
-    4648 
+    4648
+    24800
   ];
   # networking.firewall.allowedUDPPorts = [ ... ];
   networking.firewall.enable = true;

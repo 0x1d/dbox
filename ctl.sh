@@ -11,55 +11,65 @@
 ##  ░ ░           ░  ░░  ░       ░ ░        ░  
 ##  ░ ░                                        
 ##
-## A DISCO Environment
+## Welcome to the DISCO -
+## Decentralized Infrastructure for Serverless Compute Operations
 ##
-##-----------------------------------------------------------------
+#-----------------------------------------------------------------
 # Consul:    http://$hostname:8500/ui
 # Nomad:     http://$hostname:4646/ui
 # Syncthing: http://$hostname:8384/
 #-----------------------------------------------------------------
-
-## config           Configure node
+##
+## ~> System ------------------------------------------------------
+##
+## config           Configure
 function config {
     spacevim dotfiles/config
 }
-## provision        Bootstrap System
-function provision {
+## bootstrap        Bootstrap
+function bootstrap {
     make it so
 }
 
-##-----------------------------------------------------------------
-
-## dcud             Daemonized Compose
-function dcud {
-    docker-compose -f dev/compose.yaml up -d
+##
+## ~> Docker ------------------------------------------------------
+##
+## dcu              Compose up
+function dcu {
+    pushd dev
+        docker-compose up
+    popd
+    ctl_continue
 }
 ## dcd              Compose down
 function dcd {
-    docker-compose -f dev/compose.yaml down --remove-orphans
+    pushd dev
+        docker-compose down --remove-orphans
+    popd
 }
-##-----------------------------------------------------------------
-
-## server           Bootstrap control-plane
-function server {
-    sudo nomad agent \
-        -server \
-        -config=./os/etc/nomad.d/server.hcl \
-        -bootstrap-expect=3
+## dps              Show running containers
+function dps {
+    docker ps \
+    | fzf --height=10 --layout=reverse \
+    | awk '{ print $1}' | xargs docker inspect
+    ctl_continue
 }
-
-## client           Join data-plane
-function client {
-    sudo nomad agent \
-        -client \
-        -config=./os/etc/nomad.d/client.hcl \
-        join 
+##
+## ~> Orchestrator -------------------------------------------------
+##
+## ui               Start web interface
+function ui {
+    hashi-ui --consul-enable --nomad-enable
+    ctl_continue
 }
-
-##-----------------------------------------------------------------
-
-
-## job              Workload Scheduling
+## status           Query job status
+function status {
+    nomad status \
+    | fzf --height=10 --layout=reverse \
+    | awk '{ print $1}' | xargs nomad status
+    ctl_continue
+}
+## job              Scheduling
 function job {
     pushd jobs
         ls \
@@ -69,32 +79,46 @@ function job {
   ctl_continue
 }
 
-##  └── plan
+##  └── plan        Plan worload
 function plan {
     job plan 
 }
 
-##  └── run
+##  └── run         Schedule workload
 function run {
     job run
 }
 
-## status
-function status {
-    nomad status \
-    | fzf --height=10 --layout=reverse \
-    | awk '{ print $1}' | xargs nomad status
-    ctl_continue
+
+
+
+# server           Bootstrap control-plane
+function server {
+    sudo nomad agent \
+        -server \
+        -config=./os/etc/nomad.d/server.hcl \
+        -bootstrap-expect=3
+}
+
+# client           Join data-plane
+function client {
+    sudo nomad agent \
+        -client \
+        -config=./os/etc/nomad.d/client.hcl \
+        join 
+}
+
+function ctl_nomad_info {
+    nomad node status
+    printf "\n-----------------------------------------------------------------\n\n"
+    nomad status
+    printf "\n"
+    printf "\n-----------------------------------------------------------------\n\n"
 }
 
 function ctl_info {
     clear
     sed -n 's/^##//p' ctl.sh 
-    printf "\n-----------------------------------------------------------------\n\n"
-    nomad node status
-    printf "\n-----------------------------------------------------------------\n\n"
-    nomad status
-    printf "\n"
     printf "\n-----------------------------------------------------------------\n\n"
 }
 

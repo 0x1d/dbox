@@ -5,5 +5,5 @@ It can be reconfigured and reprogrammed by the operators to adapt to changing en
 
 List of potential sprockets:
 - TRS - Tranceiver Relay Station (e.g. Audio-Bluetooth, Audio-Wifi)
-- Farbgeber
+- [[farbgeber]]
 - 
