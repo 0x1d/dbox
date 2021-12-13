@@ -219,7 +219,6 @@
   # Networking
 
   services.openssh.enable = true;
-
   programs.nm-applet.enable = true;
   networking.networkmanager.enable = true;
 
@@ -228,10 +227,15 @@
     22
     80
     443
-    4646 
+    24800 # ???
+
+    # nomad
+    4646
     4647 
     4648
-    24800
+
+    # consul
+    8500
   ];
   # networking.firewall.allowedUDPPorts = [ ... ];
   networking.firewall.enable = true;
