@@ -1,9 +1,8 @@
 # /etc/nomad.d/client.hcl
 
-datacenter = "dc1"
-
-# data_dir tends to be environment specific.
-data_dir = "/opt/nomad/client/data"
+datacenter = "yaktown"
+data_dir   = "/opt/nomad/client/data"
+bind_addr  = "0.0.0.0"
 
 client {
   enabled = true

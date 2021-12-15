@@ -1,5 +1,5 @@
 ui {
-  enabled =  true
+  enabled = true
 
   consul {
     base_url = "http://consul.yakzero:8500/ui"
