@@ -11,13 +11,18 @@ job "box" {
       }
       port "http" {
         to = 80
-      }      
+      }
     }
 
     task "code" {
       driver = "docker"
+      env {
+        PUID = 1000
+        PGID = 1000
+        TZ = Europe/Zurich
+      }
       config {
-        image = "ghcr.io/linuxserver/code-server"
+        image = "ghcr.io/linuxserver/code-server:3.12.0"
         ports = ["dev"]
       }
       resources {
@@ -25,10 +30,15 @@ job "box" {
         memory = 1024
       }
     }
-    task "nextcloud" {
+    task "syncthing" {
       driver = "docker"
+      env {
+        PUID = 1000
+        PGID = 1000
+        TZ = Europe/Zurich
+      }
       config {
-        image = "ghcr.io/linuxserver/nextcloud:version-22.1.1"
+        image = "ghcr.io/linuxserver/syncthing:1.18.5"
         ports = ["https"]
       }
       resources {
@@ -39,3 +49,13 @@ job "box" {
   }
   
 }
+
+    volumes:
+      - /path/to/appdata/config:/config
+      - /path/to/data1:/data1
+      - /path/to/data2:/data2
+    ports:
+      - 8384:8384
+      - 22000:22000/tcp
+      - 22000:22000/udp
+      - 21027:21027/udp

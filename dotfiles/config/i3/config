@@ -9,7 +9,7 @@ set $mod Mod4
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
-font pango:monospace 10
+#font pango:monospace 10
 #font pango:xos4 Terminus Regular 11
 
 # disable title bar
@@ -17,17 +17,12 @@ default_border pixel
 
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
-#font pango:DejaVu Sans Mono 8
+font pango:DejaVu Sans Mono 10
 
 
-#alacritty
-#exec --no-startup-id alacritty --class ctlsh --working-directory ~/dbox -e ./ctl.sh
-#exec --no-startup-id alacritty --class ctlsh --working-directory ~/ -e bpytop
-exec --no-startup-id nitrogen --restore
+#exec --no-startup-id nitrogen --restore
 exec --no-startup-id obsidian
 exec --no-startup-id code
-
-# xfce
 exec --no-startup-id xfce4-terminal --title ctlsh --default-working-directory ~/ -x bpytop
 exec --no-startup-id xfce4-terminal --title ctlsh --default-working-directory ~/src/dbox -x ~/src/dbox/ctl.sh
 
@@ -104,15 +99,15 @@ bindsym $mod+a focus parent
 #bindsym $mod+d focus child
 
 # Define names for default workspaces for which we configure key bindings later on.
-set $ws1 "( YakOS ~ 1 )"
-set $ws2 "( 2 )" 
-set $ws3 "( Code ~ 3 )"
-set $ws4 "( Grid ~ 4 )"
-set $ws5 "( 5 )"
-set $ws6 "( 6 )"
-set $ws7 "( 7 )"
-set $ws8 "( k8s )"
-set $ws9 "( Mind ~ 9 )"
+set $ws1 "(~ 1 ~ OS )"
+set $ws2 "(~ 2 ~ Yak )" 
+set $ws3 "(~ 3 ~ Code )"
+set $ws4 "(~ 4 ~ Grid )"
+set $ws5 "(~ 5 ~)"
+set $ws6 "(~ 6 ~)"
+set $ws7 "(~ 7 ~)"
+set $ws8 "(~ k8s ~)"
+set $ws9 "(~ 9 ~ ☁️ ~)"
 
 bindsym $mod+1 workspace $ws1
 bindsym $mod+2 workspace $ws2

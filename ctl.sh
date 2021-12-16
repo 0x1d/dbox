@@ -1,34 +1,57 @@
 #!/usr/bin/env bash
-##
-## ▓██   ██▓ ▄▄▄       ██ ▄█▀ ▒█████    ██████ 
-##  ▒██  ██▒▒████▄     ██▄█▒ ▒██▒  ██▒▒██    ▒ 
-##   ▒██ ██░▒██  ▀█▄  ▓███▄░ ▒██░  ██▒░ ▓██▄   
-##   ░ ▐██▓░░██▄▄▄▄██ ▓██ █▄ ▒██   ██░  ▒   ██▒
-##   ░ ██▒▓░ ▓█   ▓██▒▒██▒ █▄░ ████▓▒░▒██████▒▒
-##    ██▒▒▒  ▒▒   ▓▒█░▒ ▒▒ ▓▒░ ▒░▒░▒░ ▒ ▒▓▒ ▒ ░
-##  ▓a██ ░▒░   ▒   ▒▒ ░░ ░▒ ▒░  ░ ▒ ▒░ ░ ░▒  ░ ░
-##  ▒ ▒ ░░    ░   ▒   ░ ░░ ░ ░ ░ ░ ▒  ░  ░  ░  
-##  ░ ░           ░  ░░  ░       ░ ░        ░  
-##  ░ ░                                        
-##
-## Welcome to the DISCO -
-## Decentralized Infrastructure for Serverless Compute Operations
-##
-#-----------------------------------------------------------------
-# Consul:    http://$hostname:8500/ui
-# Nomad:     http://$hostname:4646/ui
-# Syncthing: http://$hostname:8384/
-#-----------------------------------------------------------------
+
+BIN_PATH=${BIN_PATH:-/run/current-system/sw/bin}
+
+RED="31"
+GREEN="32"
+GREENBLD="\e[1;${GREEN}m"
+REDITALIC="\e[3;${RED}m"
+EC="\e[0m"
+
 ##
 ## ~> System ------------------------------------------------------
 ##
+function info {
+    ctl_info
+    ctl_continue
+}
 ## config           Configure
 function config {
+    starship init fish --print-full-init > .yakrc
     spacevim dotfiles/config
+    make configure
 }
 ## bootstrap        Bootstrap
 function bootstrap {
     make it so
+    ctl_continue
+}
+## shell            Interact with Starship
+function shell {
+    starship explain
+    ctl_continue
+}
+##
+## ~> Daemons ----------------------------------------------------
+##
+## nsa              Nomad Server Agent
+function server {
+    sudo nomad agent \
+        -server \
+        -config=./os/etc/nomad.d/server-single.hcl \
+        -bootstrap-expect=1
+}
+
+## nca              Nomad Client Agent
+function client {
+    sudo nomad agent \
+        -client \
+        -config=./os/etc/nomad.d/client.hcl
+}
+## ui               Web interface
+function ui {
+    hashi-ui --consul-enable --nomad-enable
+    ctl_continue
 }
 
 ##
@@ -57,11 +80,6 @@ function dps {
 ##
 ## ~> Orchestrator -------------------------------------------------
 ##
-## ui               Start web interface
-function ui {
-    hashi-ui --consul-enable --nomad-enable
-    ctl_continue
-}
 ## status           Query job status
 function status {
     nomad status \
@@ -91,23 +109,6 @@ function run {
 
 
 
-
-# server           Bootstrap control-plane
-function server {
-    sudo nomad agent \
-        -server \
-        -config=./os/etc/nomad.d/server.hcl \
-        -bootstrap-expect=3
-}
-
-# client           Join data-plane
-function client {
-    sudo nomad agent \
-        -client \
-        -config=./os/etc/nomad.d/client.hcl \
-        join 
-}
-
 function ctl_nomad_info {
     nomad node status
     printf "\n-----------------------------------------------------------------\n\n"
@@ -118,6 +119,7 @@ function ctl_nomad_info {
 
 function ctl_info {
     clear
+    echo -e "${GREENBLD}$(cat motd)${EC}"
     sed -n 's/^##//p' ctl.sh 
     printf "\n-----------------------------------------------------------------\n\n"
 }

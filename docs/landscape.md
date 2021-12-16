@@ -1,10 +1,10 @@
-# Planes of Compute
+# Planes
 
-### Control
+## Control
 Nomad, Consul, Vault and Boundary Server Agents
 
-### Data
+## Data
 Nomad client agents, Docker
 
-### Access
+## Access
 Boundary, Vault

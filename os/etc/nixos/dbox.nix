@@ -32,7 +32,7 @@
       xfce = {
         enable = true;
         noDesktop = true;
-        enableXfwm = false; # prevent running as windowManager
+        enableXfwm = false; # do not run the window manager
       };
     };
 
@@ -86,8 +86,6 @@
   environment.systemPackages = with pkgs; [
 
     nixos-generators
-
-    # code
     libcap glibc.static go gcc glibc
 
     # shell
@@ -118,6 +116,7 @@
     
     # X11
     xorg.xkill
+    nerdfonts
     picom
     brave
     firefox
@@ -139,12 +138,6 @@
     terraform
     waypoint
     hashi-ui
-    
-    # monitoring
-    #telegraf
-
-    # backup
-    #velero
     
     # Kubernetes
     kubectl kubectx kubernetes-helm lens k3d
@@ -181,14 +174,13 @@
       
     # networking
     networkmanager
-    nextdns
     wireguard-tools
     wireshark termshark
 
-    # decloud
-    exodus
+    # dcloud
+    nextdns
     syncthing
-    #fscryptctl
+    exodus
     
     # gaming
     #sc-controller
@@ -219,7 +211,6 @@
   # Networking
 
   services.openssh.enable = true;
-
   programs.nm-applet.enable = true;
   networking.networkmanager.enable = true;
 
@@ -228,12 +219,25 @@
     22
     80
     443
-    4646 
+    24800 # ???
+
+    # nomad
+    4646
     4647 
     4648
-    24800
+
+    # consul
+    8500
+
+    # syncthing
+    22000
+    8384
   ];
-  # networking.firewall.allowedUDPPorts = [ ... ];
+  networking.firewall.allowedUDPPorts = [
+    # syncthing
+    22000
+    21027
+  ];
   networking.firewall.enable = true;
 
   # This value determines the NixOS release from which the default
