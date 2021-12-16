@@ -26,13 +26,7 @@ nixpkgs:
 iso: nixpkgs
 	cd nixpkgs/nixos && nix-build \
 		-A config.system.build.isoImage \
-		-I nixos-config=modules/installer/cd-dvd/installation-cd-minimal.nix
-
-image-aarch64:
-	cd nixpkgs/nixos && nix-build nixos \
-		-I nixos=${SRCD}/os/configuration.nix \
-		nixos-config=nixos/modules/installer/sd-card/sd-image-aarch64.nix \
-		-A config.system.build.sdImage
+		-I nixos-config=modules/installer/cd-dvd/installation-cd-graphical-gnome.nix
 
 vm:
 	NIXOS_CONFIG=${SRCD}/os/vm.nix nixos-rebuild -I nixos=${SRCD}/os/configuration.nix build-vm

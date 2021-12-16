@@ -11,8 +11,8 @@
   # Enable the X11 windowing system.
   services.xserver = {
     enable = true;
-    layout = "us,de"; # Configure keymap in X11
-#    xkbVariant = "workman,";
+    layout = "us,de,ch"; # Configure keymap in X11
+    xkbVariant = "workman,";
     xkbOptions = "grp:win_space_toggle";
 
     # Enable touchpad support (enabled default in most desktopManager).

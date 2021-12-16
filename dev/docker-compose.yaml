@@ -12,7 +12,7 @@ services:
   nomad:
     image: multani/nomad
     #build: .
-    command: agent -dev-connect -network-interface="wlp5s0"
+    command: agent -dev-connect #-network-interface="wlp5s0"
     privileged: true
     network_mode: host
     environment:
