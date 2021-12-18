@@ -1,4 +1,6 @@
-# Planes
+## Planes
+
+| Name | Purpose 	|
 
 ## Control
 Nomad, Consul, Vault and Boundary Server Agents

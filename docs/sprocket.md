@@ -4,6 +4,7 @@ This can be an embedded device or a service running on a distributed compute ent
 It can be reconfigured and reprogrammed by the operators to adapt to changing environments and enable free composition of functionality and purpose chosen by the users.
 
 List of potential sprockets:
-- TRS - Tranceiver Relay Station (e.g. Audio-Bluetooth, Audio-Wifi)
+- TRS - Tranceiver Relay Station (e.g. Audio-Bluetooth, Audio-Wifi, various RF tranceiving)
+- [[illucat]]
 - [[farbgeber]]
 - 

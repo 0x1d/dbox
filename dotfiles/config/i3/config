@@ -17,7 +17,7 @@ default_border pixel
 
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
-font pango:DejaVu Sans Mono 10
+font pango:DejaVu Sans Mono 12
 
 
 #exec --no-startup-id nitrogen --restore
@@ -99,15 +99,15 @@ bindsym $mod+a focus parent
 #bindsym $mod+d focus child
 
 # Define names for default workspaces for which we configure key bindings later on.
-set $ws1 "(~ 1 ~ OS )"
-set $ws2 "(~ 2 ~ Yak )" 
-set $ws3 "(~ 3 ~ Code )"
-set $ws4 "(~ 4 ~ Grid )"
+set $ws1 "(~ 1 ~ 🌀 ~)"
+set $ws2 "(~ 2 ~)" 
+set $ws3 "(~ 3 ~)"
+set $ws4 "(~ 4 ~)"
 set $ws5 "(~ 5 ~)"
 set $ws6 "(~ 6 ~)"
 set $ws7 "(~ 7 ~)"
-set $ws8 "(~ k8s ~)"
-set $ws9 "(~ 9 ~)"
+set $ws8 "(~ ⎈ ~)"
+set $ws9 "(~ 9 ~ Mind ~)"
 
 bindsym $mod+1 workspace $ws1
 bindsym $mod+2 workspace $ws2
@@ -169,11 +169,17 @@ mode "resize" {
 # finds out, if available)
 bar {
         status_command i3status --transparency
+        font pango:DejaVu Sans Mono 10
+        separator_symbol ⁞
+        mode hide
+        position top
+        output primary
+        tray_output none
 }
 
 # gaps
 gaps inner 12
-gaps outer 0
+gaps outer 2
 
 # Window colors
 set $border-color     #2b303b

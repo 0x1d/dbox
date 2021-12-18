@@ -9,7 +9,7 @@
         "state": {
           "type": "localgraph",
           "state": {
-            "file": "ideas.md",
+            "file": "landscape.md",
             "options": {
               "collapse-filter": true,
               "search": "",
@@ -45,7 +45,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "ideas.md",
+            "file": "landscape.md",
             "mode": "source"
           }
         },
@@ -105,7 +105,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "ideas.md",
+                "file": "landscape.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -125,10 +125,10 @@
   },
   "active": "4875bde94bf9561c",
   "lastOpenFiles": [
+    "landscape.md",
     "ideas.md",
     "contraption.md",
     "purpose.md",
-    "landscape.md",
     "farbgeber.md",
     "sprocket.md",
     "hexabox.svg",
