@@ -11,8 +11,7 @@
   # Enable the X11 windowing system.
   services.xserver = {
     enable = true;
-    layout = "us,de,ch"; # Configure keymap in X11
-    xkbVariant = "workman,";
+    layout = "ch,us,de"; # Configure keymap in X11
     xkbOptions = "grp:win_space_toggle";
 
     # Enable touchpad support (enabled default in most desktopManager).
@@ -215,6 +214,7 @@
   networking.networkmanager.enable = true;
 
   # Open ports in the firewall.
+  networking.firewall.enable = true;
   networking.firewall.allowedTCPPorts = [
     22
     80
@@ -233,12 +233,12 @@
     22000
     8384
   ];
+
   networking.firewall.allowedUDPPorts = [
     # syncthing
     22000
     21027
   ];
-  networking.firewall.enable = true;
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions

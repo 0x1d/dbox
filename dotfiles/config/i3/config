@@ -46,7 +46,7 @@ bindsym $mod+Return exec xfce4-terminal
 bindsym $mod+Shift+q kill
 
 # program launcher
-bindcode $mod+d exec "rofi -modi drun,window,file-browser,combi -show combi"
+bindsym $mod+d exec "rofi -modi drun,window,file-browser,combi -show combi"
 
 # change focus
 bindsym $mod+j focus left
@@ -99,7 +99,7 @@ bindsym $mod+a focus parent
 #bindsym $mod+d focus child
 
 # Define names for default workspaces for which we configure key bindings later on.
-set $ws1 "(~ 1 ~ 🌀 ~)"
+set $ws1 "🌀"
 set $ws2 "(~ 2 ~)" 
 set $ws3 "(~ 3 ~)"
 set $ws4 "(~ 4 ~)"
@@ -169,7 +169,7 @@ mode "resize" {
 # finds out, if available)
 bar {
         status_command i3status --transparency
-        font pango:DejaVu Sans Mono 10
+        font pango:DejaVu Sans Mono 14
         separator_symbol ⁞
         mode hide
         position top
