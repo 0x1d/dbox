@@ -47,7 +47,6 @@ bindsym $mod+Shift+q kill
 
 # program launcher
 bindsym $mod+d exec "rofi -modi drun,window,file-browser,combi -show combi"
-
 # change focus
 bindsym $mod+j focus left
 bindsym $mod+k focus down
@@ -100,14 +99,14 @@ bindsym $mod+a focus parent
 
 # Define names for default workspaces for which we configure key bindings later on.
 set $ws1 "🌀"
-set $ws2 "(~ 2 ~)" 
+set $ws2 "(~ 2 ~)"
 set $ws3 "(~ 3 ~)"
 set $ws4 "(~ 4 ~)"
 set $ws5 "(~ 5 ~)"
 set $ws6 "(~ 6 ~)"
 set $ws7 "(~ 7 ~)"
 set $ws8 "(~ ⎈ ~)"
-set $ws9 "(~ 9 ~ Mind ~)"
+set $ws9 "(~ 9 ~)"
 
 bindsym $mod+1 workspace $ws1
 bindsym $mod+2 workspace $ws2
@@ -171,8 +170,8 @@ bar {
         status_command i3status --transparency
         font pango:DejaVu Sans Mono 14
         separator_symbol ⁞
-        mode hide
-        position top
+        #mode hide
+        #position top
         output primary
         tray_output none
 }

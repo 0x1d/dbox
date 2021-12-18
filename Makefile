@@ -23,14 +23,13 @@ nomad:
 nixpkgs:
 	git clone https://github.com/NixOS/nixpkgs.git nixpkgs
 
-iso: nixpkgs
-	cd nixpkgs/nixos && nix-build \
-		-A config.system.build.isoImage \
-		-I nixos-config=modules/installer/cd-dvd/installation-cd-graphical-gnome.nix
+iso:
+	nixos-generate -f iso -c default.nix
 
 vm:
-	NIXOS_CONFIG=${SRCD}/os/vm.nix nixos-rebuild -I nixos=${SRCD}/os/configuration.nix build-vm
-	./result/bin/run-vmhost-vm
+	NIXOS_CONFIG=${SRCD}/os/vm.nix \
+		nixos-rebuild -I nixos=${SRCD}/os/configuration.nix build-vm \
+		./result/bin/run-vmhost-vm
 
 # ------------------------------------------------------
 

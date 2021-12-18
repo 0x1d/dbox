@@ -37,6 +37,9 @@
 
     # i3 as window Manager
     windowManager = {
+      leftwm = {
+        enable = true;
+      };
       i3 = {
         enable = true;
         package = pkgs.i3-gaps;
@@ -113,7 +116,7 @@
     pitivi
     ffmpeg-full
     
-    # X11
+    # ui
     xorg.xkill
     nerdfonts
     picom
@@ -122,6 +125,9 @@
     qutebrowser
     chromium
     chromium-xorg-conf
+    remmina
+    rofi
+    polybar
         
     # virtualization
     docker

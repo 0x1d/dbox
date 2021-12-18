@@ -4,52 +4,59 @@
     "type": "split",
     "children": [
       {
-        "id": "abbd63b005cf44fc",
-        "type": "leaf",
-        "state": {
-          "type": "localgraph",
-          "state": {
-            "file": "README.md",
-            "options": {
-              "collapse-filter": true,
-              "search": "",
-              "localJumps": 5,
-              "localBacklinks": true,
-              "localForelinks": true,
-              "localInterlinks": true,
-              "showTags": true,
-              "showAttachments": false,
-              "hideUnresolved": false,
-              "collapse-color-groups": true,
-              "colorGroups": [],
-              "collapse-display": true,
-              "showArrow": true,
-              "textFadeMultiplier": 0,
-              "nodeSizeMultiplier": 1,
-              "lineSizeMultiplier": 1,
-              "collapse-forces": true,
-              "centerStrength": 0.258292260556814,
-              "repelStrength": 7.8966298121753,
-              "linkStrength": 0.514053550019981,
-              "linkDistance": 195,
-              "scale": 1.0198641940622653,
-              "close": false
-            }
+        "id": "bd048300edffdb27",
+        "type": "split",
+        "children": [
+          {
+            "id": "d64849151d727093",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "README.md",
+                "mode": "source"
+              }
+            },
+            "group": "9e213ff2017af9c7"
+          },
+          {
+            "id": "abbd63b005cf44fc",
+            "type": "leaf",
+            "state": {
+              "type": "localgraph",
+              "state": {
+                "file": "README.md",
+                "options": {
+                  "collapse-filter": true,
+                  "search": "",
+                  "localJumps": 5,
+                  "localBacklinks": true,
+                  "localForelinks": true,
+                  "localInterlinks": true,
+                  "showTags": true,
+                  "showAttachments": false,
+                  "hideUnresolved": false,
+                  "collapse-color-groups": true,
+                  "colorGroups": [],
+                  "collapse-display": true,
+                  "showArrow": true,
+                  "textFadeMultiplier": 0,
+                  "nodeSizeMultiplier": 1,
+                  "lineSizeMultiplier": 1,
+                  "collapse-forces": true,
+                  "centerStrength": 0.258292260556814,
+                  "repelStrength": 7.8966298121753,
+                  "linkStrength": 0.514053550019981,
+                  "linkDistance": 195,
+                  "scale": 1.0198641940622653,
+                  "close": false
+                }
+              }
+            },
+            "group": "9e213ff2017af9c7"
           }
-        },
-        "group": "9e213ff2017af9c7"
-      },
-      {
-        "id": "d64849151d727093",
-        "type": "leaf",
-        "state": {
-          "type": "markdown",
-          "state": {
-            "file": "README.md",
-            "mode": "source"
-          }
-        },
-        "group": "9e213ff2017af9c7"
+        ],
+        "direction": "horizontal"
       }
     ],
     "direction": "vertical"
@@ -123,7 +130,7 @@
     "width": 300,
     "collapsed": true
   },
-  "active": "abbd63b005cf44fc",
+  "active": "d64849151d727093",
   "lastOpenFiles": [
     "README.md",
     "docs/landscape.md",
