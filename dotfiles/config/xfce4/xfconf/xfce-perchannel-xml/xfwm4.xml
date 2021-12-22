@@ -3,15 +3,15 @@
 <channel name="xfwm4" version="1.0">
   <property name="general" type="empty">
     <property name="workspace_names" type="array">
-      <value type="string" value="(~ 1 ~ OS )"/>
-      <value type="string" value="(~ 2 ~ Yak )"/>
-      <value type="string" value="(~ 3 ~ Code )"/>
+      <value type="string" value="1:🐧"/>
+      <value type="string" value="3:🌐"/>
+      <value type="string" value="9:🌀"/>
       <value type="string" value="(~ 4 ~ Grid )"/>
       <value type="string" value="(~ 9 ~ Mind ~)"/>
       <value type="string" value="( Mind ~ 9 )"/>
       <value type="string" value="( k8s )"/>
       <value type="string" value="Workspace 8"/>
     </property>
-    <property name="workspace_count" type="int" value="4"/>
+    <property name="workspace_count" type="int" value="3"/>
   </property>
 </channel>

@@ -36,11 +36,11 @@
         <property name="Y" type="int" value="0"/>
       </property>
     </property>
-    <property name="HDMI-1" type="string" value="Samsung 34&quot;">
+    <property name="HDMI-1" type="string" value="ASUS 28&quot;">
       <property name="Active" type="bool" value="true"/>
-      <property name="EDID" type="string" value="a270588bb652be3a31a06589ea55dc01f2a9489b"/>
-      <property name="Resolution" type="string" value="3440x1440"/>
-      <property name="RefreshRate" type="double" value="49.986808"/>
+      <property name="EDID" type="string" value="e092b01d864a04243b206372261b9c5b577de71e"/>
+      <property name="Resolution" type="string" value="2560x1440"/>
+      <property name="RefreshRate" type="double" value="59.950550"/>
       <property name="Rotation" type="int" value="0"/>
       <property name="Reflection" type="string" value="0"/>
       <property name="Primary" type="bool" value="false"/>
@@ -106,11 +106,11 @@
         <property name="Y" type="int" value="0"/>
       </property>
     </property>
-    <property name="HDMI-1" type="string" value="Samsung 34&quot;">
+    <property name="HDMI-1" type="string" value="ASUS 28&quot;">
       <property name="Active" type="bool" value="true"/>
-      <property name="EDID" type="string" value="a270588bb652be3a31a06589ea55dc01f2a9489b"/>
-      <property name="Resolution" type="string" value="3440x1440"/>
-      <property name="RefreshRate" type="double" value="49.986808"/>
+      <property name="EDID" type="string" value="e092b01d864a04243b206372261b9c5b577de71e"/>
+      <property name="Resolution" type="string" value="2560x1440"/>
+      <property name="RefreshRate" type="double" value="59.950550"/>
       <property name="Rotation" type="int" value="0"/>
       <property name="Reflection" type="string" value="0"/>
       <property name="Primary" type="bool" value="false"/>
@@ -142,4 +142,6 @@
     </property>
   </property>
   <property name="ActiveProfile" type="string" value="Default"/>
+  <property name="Notify" type="bool" value="true"/>
+  <property name="IdentityPopups" type="bool" value="true"/>
 </channel>
