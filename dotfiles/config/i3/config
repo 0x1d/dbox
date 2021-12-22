@@ -168,18 +168,18 @@ mode "resize" {
 # finds out, if available)
 bar {
         status_command i3status --transparency
-        #font pango:DejaVu Sans Mono 14
         separator_symbol ⁞
+        strip_workspace_numbers yes
+        #font pango:DejaVu Sans Mono 14
         #mode hide
         #position top
-        output primary
-        tray_output none
-        strip_workspace_numbers yes
+        #output primary
+        #tray_output none
 }
 
 # gaps
 gaps inner 12
-gaps outer 0
+gaps outer 2
 
 # Window colors
 set $border-color     #2b303b
