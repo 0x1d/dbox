@@ -5,6 +5,7 @@ BIN_PATH=${BIN_PATH:-/run/current-system/sw/bin}
 RED="31"
 GREEN="32"
 GREENBLD="\e[1;${GREEN}m"
+REDBOLD="\e[1;${RED}m"
 REDITALIC="\e[3;${RED}m"
 EC="\e[0m"
 
@@ -17,11 +18,10 @@ function info {
 }
 ## config           Configure
 function config {
-    starship init fish --print-full-init > .yakrc
+    starship init fish --print-full-init > dotfiles/config/yakrc
     spacevim dotfiles/config
-    make configure
 }
-## bootstrap        Bootstrap
+## bootstrap        Install configuration and rebuild system
 function bootstrap {
     make it so
     ctl_continue
@@ -29,8 +29,19 @@ function bootstrap {
 ## shell            Interact with Starship
 function shell {
     starship explain
+    source .yakrc
     ctl_continue
 }
+
+## reboot           ReShave your yak
+function reboot {
+    reboot
+}
+## shutdown         Let your yak sleep with the fishes
+function shutdown {
+    shutdown -h now
+}
+
 ##
 ## ~> Daemons ----------------------------------------------------
 ##
@@ -126,7 +137,8 @@ function ctl_info {
 
 function ctl_loop {
     ctl_info
-    read -p 'Choose: ';
+    echo -e "${REDBOLD}Choose operation...${EC}"
+    read -p '> ';
     ./ctl.sh ${REPLY}
     ctl_loop
 }

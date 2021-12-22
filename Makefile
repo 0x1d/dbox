@@ -15,12 +15,9 @@ ctl:
 	./ctl.sh
 
 dbox:
+	-ln -s ${PWD}/ctl.sh ${HOME}/ctl.sh
 	cp -r dotfiles/config/* ${HOME}/.config
-	ln -s ${PWD}/ctl.sh ${HOME}/ctl.sh
 	sudo cp -r os/dbox.nix /etc/nixos/
-
-configure: dbox
-	sudo vim /etc/nixos/configuration.nix
 
 apply:
 	sudo nixos-rebuild switch
