@@ -12,7 +12,7 @@ configure:
 	cp -r dotfiles/config/* ${HOME}/.config
 
 install: configure
-	sudo cp -r os/etc/nixos/dbox.nix /etc/nixos/
+	sudo cp -r os/dbox.nix /etc/nixos/
 	sudo nixos-rebuild switch
 
 nomad:

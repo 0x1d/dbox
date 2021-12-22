@@ -1,10 +1,9 @@
 [Configuration]
-BackgroundMode=TERMINAL_BACKGROUND_TRANSPARENT
 MiscAlwaysShowTabs=FALSE
 MiscBell=FALSE
 MiscBellUrgent=FALSE
 MiscBordersDefault=FALSE
-MiscCursorBlinks=TRUE
+MiscCursorBlinks=FALSE
 MiscCursorShape=TERMINAL_CURSOR_SHAPE_BLOCK
 MiscDefaultGeometry=80x24
 MiscInheritGeometry=FALSE
@@ -27,6 +26,4 @@ MiscSlimTabs=FALSE
 MiscNewTabAdjacent=FALSE
 MiscSearchDialogOpacity=100
 MiscShowUnsafePasteDialog=TRUE
-BackgroundDarkness=0.870000
-ScrollingUnlimited=TRUE
-
+ColorUseTheme=TRUE
