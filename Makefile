@@ -1,23 +1,34 @@
+SHELL ?= bash
 SRCD ?= $(shell pwd)
+DOTCONFIG = $(shell ls dotfiles/config)
+USER_CONFIG = $(shell ls ~/.config)
 
-default: ctl
+default: info
 
-it: configure
-so: install
+it: dbox
+so: apply
+
+commit: sync
+sync: ${DOTCONFIG}
 
 ctl:
 	./ctl.sh
 
-configure:
+dbox:
 	cp -r dotfiles/config/* ${HOME}/.config
-
-install: configure
+	ln -s ${PWD}/ctl.sh ${HOME}/ctl.sh
 	sudo cp -r os/dbox.nix /etc/nixos/
+
+configure: dbox
+	sudo vim /etc/nixos/configuration.nix
+
+apply:
 	sudo nixos-rebuild switch
 
-nomad:
-	sudo cp -r os/etc/nomad.d/* /etc/nomad.d
-
+$(DOTCONFIG):
+	@printf "\nCollect Config: $@\n"
+	cp -r ~/.config/$@ dotfiles/config
+	
 # ------------------------------------------------------
 
 nixpkgs:
@@ -32,6 +43,9 @@ vm:
 		./result/bin/run-vmhost-vm
 
 # ------------------------------------------------------
+
+info:
+	@printf "Config:\n${DOTCONFIG}"
 
 TARGETS = $(shell ls apps)
 $(TARGETS):
