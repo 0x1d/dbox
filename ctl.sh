@@ -33,12 +33,12 @@ function shell {
     ctl_continue
 }
 
-## reboot           ReShave your yak
-function reboot {
+## [r]e[b]oot       A freshly shaved yak is a happy yak
+function rb {
     reboot
 }
-## shutdown         Let your yak sleep with the fishes
-function shutdown {
+## [s]hut[d]own     Sleep with the fishes
+function sd {
     shutdown -h now
 }
 
