@@ -1,6 +1,12 @@
-# Landscape
 ## Planes
-### Control
-### Stream
-### Data
-### Access
+
+| Name | Purpose 	|
+
+## Control
+Nomad, Consul, Vault and Boundary Server Agents
+
+## Data
+Nomad client agents, Docker
+
+## Access
+Boundary, Vault

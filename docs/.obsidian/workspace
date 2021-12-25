@@ -4,32 +4,20 @@
     "type": "split",
     "children": [
       {
-        "id": "1e8d28e249f4df48",
-        "type": "leaf",
-        "state": {
-          "type": "markdown",
-          "state": {
-            "file": "sprocket.md",
-            "mode": "source"
-          }
-        },
-        "group": "4c3112281265714d"
-      },
-      {
         "id": "a7dda206d17cbbd5",
         "type": "leaf",
         "state": {
           "type": "localgraph",
           "state": {
-            "file": "sprocket.md",
+            "file": "landscape.md",
             "options": {
               "collapse-filter": true,
               "search": "",
-              "localJumps": 5,
+              "localJumps": 1,
               "localBacklinks": true,
               "localForelinks": true,
-              "localInterlinks": true,
-              "showTags": true,
+              "localInterlinks": false,
+              "showTags": false,
               "showAttachments": false,
               "hideUnresolved": false,
               "collapse-color-groups": true,
@@ -49,7 +37,19 @@
             }
           }
         },
-        "group": "4c3112281265714d"
+        "group": "886091678eba33d3"
+      },
+      {
+        "id": "4875bde94bf9561c",
+        "type": "leaf",
+        "state": {
+          "type": "markdown",
+          "state": {
+            "file": "landscape.md",
+            "mode": "source"
+          }
+        },
+        "group": "886091678eba33d3"
       }
     ],
     "direction": "vertical"
@@ -105,7 +105,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "sprocket.md",
+                "file": "landscape.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -123,13 +123,15 @@
     "width": 300,
     "collapsed": true
   },
-  "active": "1e8d28e249f4df48",
+  "active": "4875bde94bf9561c",
   "lastOpenFiles": [
-    "sprocket.md",
-    "contraption.md",
-    "ideas.md",
-    "purpose.md",
     "landscape.md",
-    "hexabox.svg"
+    "ideas.md",
+    "contraption.md",
+    "purpose.md",
+    "farbgeber.md",
+    "sprocket.md",
+    "hexabox.svg",
+    "sprockets.md"
   ]
 }

@@ -1,9 +1,10 @@
-# Sprockets
-A sprocket is a small entity of input-output-processing that serves exactly one purpose.
+# Sprocket
+A sprocket is the smalles unit of dedicated stateless input-output-processing.
 This can be an embedded device or a service running on a distributed compute entity.
 It can be reconfigured and reprogrammed by the operators to adapt to changing environments and enable free composition of functionality and purpose chosen by the users.
 
 List of potential sprockets:
-- TRS - Tranceiver Relay Station (e.g. Audio-Bluetooth, Audio-Wifi)
-- Farbgeber
-- 
+- TRS - Tranceiver Relay Station (e.g. Audio-Bluetooth, Audio-Wifi, various RF tranceiving)
+- [[illucat]]
+- [[farbgeber]]
+- [[]]

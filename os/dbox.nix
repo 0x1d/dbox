@@ -11,8 +11,7 @@
   # Enable the X11 windowing system.
   services.xserver = {
     enable = true;
-    layout = "us,de"; # Configure keymap in X11
-#    xkbVariant = "workman,";
+    layout = "ch,us,de"; # Configure keymap in X11
     xkbOptions = "grp:win_space_toggle";
 
     # Enable touchpad support (enabled default in most desktopManager).
@@ -32,12 +31,15 @@
       xfce = {
         enable = true;
         noDesktop = true;
-        enableXfwm = false; # prevent running as windowManager
+        enableXfwm = false; # do not run the window manager
       };
     };
 
     # i3 as window Manager
     windowManager = {
+      leftwm = {
+        enable = true;
+      };
       i3 = {
         enable = true;
         package = pkgs.i3-gaps;
@@ -86,8 +88,6 @@
   environment.systemPackages = with pkgs; [
 
     nixos-generators
-
-    # code
     libcap glibc.static go gcc glibc
 
     # shell
@@ -100,7 +100,6 @@
     
     tmux ranger vim
     spacevim
-    alacritty
     bpytop
     iotop
     nmap
@@ -117,14 +116,18 @@
     pitivi
     ffmpeg-full
     
-    # X11
+    # ui
     xorg.xkill
+    nerdfonts
     picom
     brave
     firefox
     qutebrowser
     chromium
     chromium-xorg-conf
+    remmina
+    rofi
+    polybar
         
     # virtualization
     docker
@@ -141,14 +144,9 @@
     waypoint
     hashi-ui
     
-    # monitoring
-    telegraf
-
-    # backup
-    velero
-    
     # Kubernetes
     kubectl kubectx kubernetes-helm lens k3d
+    google-cloud-sdk
 
     # devel
     gnumake
@@ -172,19 +170,22 @@
     # ui
     lxappearance
     juno-theme
+    sweet
+    beauty-line-icon-theme
+
+    #  util
     barrier
     filelight
       
     # networking
     networkmanager
-    nextdns
     wireguard-tools
     wireshark termshark
 
-    # decloud
-    exodus
+    # dcloud
+    nextdns
     syncthing
-    #fscryptctl
+    exodus
     
     # gaming
     #sc-controller
@@ -215,19 +216,35 @@
   # Networking
 
   services.openssh.enable = true;
-
   programs.nm-applet.enable = true;
   networking.networkmanager.enable = true;
 
   # Open ports in the firewall.
+  networking.firewall.enable = true;
   networking.firewall.allowedTCPPorts = [
     22
-    4646 
+    80
+    443
+    24800 # ???
+
+    # nomad
+    4646
     4647 
-    4648 
+    4648
+
+    # consul
+    8500
+
+    # syncthing
+    22000
+    8384
   ];
-  # networking.firewall.allowedUDPPorts = [ ... ];
-  networking.firewall.enable = true;
+
+  networking.firewall.allowedUDPPorts = [
+    # syncthing
+    22000
+    21027
+  ];
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions

@@ -1,66 +1,104 @@
 #!/usr/bin/env bash
-##
-## ▓██   ██▓ ▄▄▄       ██ ▄█▀ ▒█████    ██████ 
-##  ▒██  ██▒▒████▄     ██▄█▒ ▒██▒  ██▒▒██    ▒ 
-##   ▒██ ██░▒██  ▀█▄  ▓███▄░ ▒██░  ██▒░ ▓██▄   
-##   ░ ▐██▓░░██▄▄▄▄██ ▓██ █▄ ▒██   ██░  ▒   ██▒
-##   ░ ██▒▓░ ▓█   ▓██▒▒██▒ █▄░ ████▓▒░▒██████▒▒
-##    ██▒▒▒  ▒▒   ▓▒█░▒ ▒▒ ▓▒░ ▒░▒░▒░ ▒ ▒▓▒ ▒ ░
-##  ▓a██ ░▒░   ▒   ▒▒ ░░ ░▒ ▒░  ░ ▒ ▒░ ░ ░▒  ░ ░
-##  ▒ ▒ ░░    ░   ▒   ░ ░░ ░ ░ ░ ░ ▒  ░  ░  ░  
-##  ░ ░           ░  ░░  ░       ░ ░        ░  
-##  ░ ░                                        
-##
-## A DISCO Environment
-##
-##-----------------------------------------------------------------
-## Consul:    http://$hostname:8500/ui
-## Nomad:     http://$hostname:4646/ui
-## Syncthing: http://$hostname:8384/
-##-----------------------------------------------------------------
 
-## config           Configure node
+BIN_PATH=${BIN_PATH:-/run/current-system/sw/bin}
+
+RED="31"
+GREEN="32"
+GREENBLD="\e[1;${GREEN}m"
+REDBOLD="\e[1;${RED}m"
+REDITALIC="\e[3;${RED}m"
+EC="\e[0m"
+
+##
+## ~> System ------------------------------------------------------
+##
+function info {
+    ctl_info
+    ctl_continue
+}
+## config           Configure
 function config {
+    starship init fish --print-full-init > dotfiles/config/yakrc
     spacevim dotfiles/config
 }
-## mkInstall        Install this yak
-function mkInstall {
-    cp -r dotfiles/config/* ${HOME}/.config
-    make install
+## bootstrap        Install configuration and rebuild system
+function bootstrap {
+    make it so
+    ctl_continue
+}
+## shell            Interact with Starship
+function shell {
+    starship explain
+    source .yakrc
+    ctl_continue
 }
 
-##-----------------------------------------------------------------
-
-## dcu              docker-compose up
-function dcu {
-    docker-compose -f dev/compose.yaml up -d
+## [r]e[b]oot       A freshly shaved yak is a happy yak
+function rb {
+    reboot
 }
-## dcd              docker-compose down
-function dcd {
-    docker-compose -f dev/compose.yaml down --remove-orphans
+## [s]hut[d]own     Sleep with the fishes
+function sd {
+    shutdown -h now
 }
-##-----------------------------------------------------------------
 
-## server           Bootstrap control-plane
+##
+## ~> Daemons ----------------------------------------------------
+##
+## nsa              Nomad Server Agent
 function server {
     sudo nomad agent \
         -server \
-        -config=./os/etc/nomad.d/server.hcl \
-        -bootstrap-expect=3
+        -config=./os/etc/nomad.d/server-single.hcl \
+        -bootstrap-expect=1
 }
 
-## client           Join data-plane
+## nca              Nomad Client Agent
 function client {
     sudo nomad agent \
         -client \
-        -config=./os/etc/nomad.d/client.hcl \
-        join 
+        -config=./os/etc/nomad.d/client.hcl
+}
+## ui               Web interface
+function ui {
+    hashi-ui --consul-enable --nomad-enable
+    ctl_continue
 }
 
-##-----------------------------------------------------------------
-
-
-## job              Workload Scheduling
+##
+## ~> Docker ------------------------------------------------------
+##
+## dcu              Compose up
+function dcu {
+    pushd dev
+        docker-compose up
+    popd
+    ctl_continue
+}
+## dcd              Compose down
+function dcd {
+    pushd dev
+        docker-compose down --remove-orphans
+    popd
+}
+## dps              Show running containers
+function dps {
+    docker ps \
+    | fzf --height=10 --layout=reverse \
+    | awk '{ print $1}' | xargs docker inspect
+    ctl_continue
+}
+##
+## ~> Orchestrator -------------------------------------------------
+##
+## status           Query job status
+function status {
+    nomad status \
+    | fzf --height=10 --layout=reverse \
+    | awk '{ print $1}' | xargs nomad status
+    ctl_continue
+}
+## job              Scheduling
 function job {
     pushd jobs
         ls \
@@ -70,28 +108,19 @@ function job {
   ctl_continue
 }
 
-##  └── plan
+##  └── plan        Plan worload
 function plan {
     job plan 
 }
 
-##  └── run
+##  └── run         Schedule workload
 function run {
     job run
 }
 
-## status
-function status {
-    nomad status \
-    | fzf --height=10 --layout=reverse \
-    | awk '{ print $1}' | xargs nomad status
-    ctl_continue
-}
 
-function ctl_info {
-    clear
-    sed -n 's/^##//p' ctl.sh 
-    printf "\n-----------------------------------------------------------------\n\n"
+
+function ctl_nomad_info {
     nomad node status
     printf "\n-----------------------------------------------------------------\n\n"
     nomad status
@@ -99,9 +128,17 @@ function ctl_info {
     printf "\n-----------------------------------------------------------------\n\n"
 }
 
+function ctl_info {
+    clear
+    echo -e "${GREENBLD}$(cat motd)${EC}"
+    sed -n 's/^##//p' ctl.sh 
+    printf "\n-----------------------------------------------------------------\n\n"
+}
+
 function ctl_loop {
     ctl_info
-    read -p 'Choose: ';
+    echo -e "${REDBOLD}Choose operation...${EC}"
+    read -p '> ';
     ./ctl.sh ${REPLY}
     ctl_loop
 }

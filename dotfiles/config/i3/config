@@ -9,22 +9,21 @@ set $mod Mod4
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
-font pango:monospace 10
-#font pango:xos4 Terminus Regular 11
+#font pango:monospace 10
+#font pango:xos4 Terminus Regular 10
 
 # disable title bar
 default_border pixel
 
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
-#font pango:DejaVu Sans Mono 8
-
+font pango:DejaVu Sans Mono 10
 
 exec --no-startup-id nitrogen --restore
-exec --no-startup-id alacritty --class ctlsh --working-directory ~/src/dbox -e ./ctl.sh
-exec --no-startup-id alacritty --class ctlsh --working-directory ~/src/dbox -e bpytop
 exec --no-startup-id obsidian
-exec --no-startup-id code
+#exec --no-startup-id code
+exec --no-startup-id xfce4-terminal --title ctlsh --default-working-directory ~/ -x bpytop
+exec --no-startup-id xfce4-terminal --title ctlsh --default-working-directory ~/src/dbox -x ~/src/dbox/ctl.sh
 
 #exec --no-startup-id compton -d --config /home/master/.config/compton/config
 
@@ -40,14 +39,13 @@ floating_modifier $mod
 
 # start a terminal
 #bindsym $mod+Return exec i3-sensible-terminal
-bindsym $mod+Return exec alacritty
+bindsym $mod+Return exec xfce4-terminal
 
 # kill focused window
 bindsym $mod+Shift+q kill
 
 # program launcher
-bindcode $mod+40 exec "rofi -modi drun,window,file-browser,combi -show combi"
-
+bindsym $mod+d exec "rofi -modi drun,window,file-browser,combi -show combi"
 # change focus
 bindsym $mod+j focus left
 bindsym $mod+k focus down
@@ -86,11 +84,12 @@ bindsym $mod+s layout stacking
 bindsym $mod+w layout tabbed
 bindsym $mod+e layout toggle split
 
+bindsym $mod+space exec spacevim
 # toggle tiling / floating
 bindsym $mod+Shift+space floating toggle
 
 # change focus between tiling / floating windows
-bindsym $mod+space focus mode_toggle
+#bindsym $mod+space focus mode_toggle
 
 # focus the parent container
 bindsym $mod+a focus parent
@@ -99,15 +98,15 @@ bindsym $mod+a focus parent
 #bindsym $mod+d focus child
 
 # Define names for default workspaces for which we configure key bindings later on.
-set $ws1 "( YakOS ~ 1 )"
-set $ws2 "( 2 )" 
-set $ws3 "( Code ~ 3 )"
-set $ws4 "( Grid ~ 4 )"
-set $ws5 "( 5 )"
-set $ws6 "( 6 )"
-set $ws7 "( 7 )"
-set $ws8 "( k8s )"
-set $ws9 "( Mind ~ 9 )"
+set $ws1 "1:🐧"
+set $ws2 "2:🐂"
+set $ws3 "3:🌐"
+set $ws4 "4:🗂"
+set $ws5 "5:🎵"
+set $ws6 "6:👾"
+set $ws7 "7:📡"
+set $ws8 "8:👽"
+set $ws9 "9:🌀"
 
 bindsym $mod+1 workspace $ws1
 bindsym $mod+2 workspace $ws2
@@ -169,11 +168,18 @@ mode "resize" {
 # finds out, if available)
 bar {
         status_command i3status --transparency
+        separator_symbol ⁞
+        strip_workspace_numbers yes
+        #font pango:DejaVu Sans Mono 14
+        #mode hide
+        #position top
+        #output primary
+        #tray_output none
 }
 
 # gaps
 gaps inner 12
-gaps outer 0
+gaps outer 2
 
 # Window colors
 set $border-color     #2b303b
@@ -189,27 +195,28 @@ client.unfocused         $border-color  $border-color  $text-color    $border-co
 client.focused_inactive  $border-color  $border-color  $text-color    $border-color
 client.urgent            $border-color  $urgent-color  $urgent-color  $border-color
 
-bindsym $mod+X mode "$mode_system"
+#bindsym $mod+X mode "$mode_system"
+#set $mode_system  Q ➤   W ➤   E ➤   R ➤ 
+#mode "$mode_system" {
+#    bindsym q exec --no-startup-id i3lock-fancy, mode "default"
+#    bindsym Return mode "default"
+#    bindsym Escape mode "default"
+#}
 
-set $mode_system  Q ➤   W ➤   E ➤   R ➤ 
-mode "$mode_system" {
-    bindsym q exec --no-startup-id i3lock-fancy, mode "default"
-    bindsym Return mode "default"
-    bindsym Escape mode "default"
-}
-
-for_window [class="ctlsh"] move container to workspace $ws1
-for_window [class="qt5ct|Lxappearance|^Gpick$|Pamac|Peek|Nitrogen"] floating enable
 for_window [window_role="^Preferences$"] floating enable
-#assign [class="Alacritty"] $ws1
-assign [class="obsidian"] $ws9
-assign [class="Code"] $ws3
+for_window [class="qt5ct|Lxappearance|^Gpick$|Pamac|Peek|Nitrogen"] floating enable
+assign [class="ctlsh"] $ws1
+assign [class="Code"] $ws2
+assign [class="Firefox|Chromium|Brave"] $ws3
 assign [class="Thunar|PCManFM|Firefox|Chromium|Brave"] $ws4
-assign [class="Lens"] $ws9
+assign [class="vlc"] $ws5
+assign [class="Steam"] $ws6
+assign [class="Lens"] $ws8
+assign [class="obsidian"] $ws9
 
-#for_window [class="Alacritty"] move container to workspace $ws1
-for_window [class="Code"] move container to workspace $ws3
-for_window [class="vlc"] move container to workspace $ws6
-for_window [class="Steam"] move container to workspace $ws7
+for_window [title="ctlsh"] move container to workspace $ws1
+for_window [class="Code"] move container to workspace $ws2
+for_window [class="vlc"] move container to workspace $ws5
+for_window [class="Steam"] move container to workspace $ws6
 for_window [class="Lens"] move container to workspace $ws8
 for_window [class="obsidian"] move container to workspace $ws9

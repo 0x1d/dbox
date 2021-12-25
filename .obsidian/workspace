@@ -4,16 +4,16 @@
     "type": "split",
     "children": [
       {
-        "id": "4130ab4b9b046504",
+        "id": "d64849151d727093",
         "type": "leaf",
         "state": {
           "type": "markdown",
           "state": {
-            "file": "model/Consumer.md",
+            "file": "docs/sprocket.md",
             "mode": "source"
           }
         },
-        "group": "52c029e28c353e87"
+        "group": "9e213ff2017af9c7"
       },
       {
         "id": "abbd63b005cf44fc",
@@ -21,35 +21,35 @@
         "state": {
           "type": "localgraph",
           "state": {
-            "file": "model/Consumer.md",
+            "file": "docs/sprocket.md",
             "options": {
               "collapse-filter": true,
               "search": "",
               "localJumps": 5,
               "localBacklinks": true,
               "localForelinks": true,
-              "localInterlinks": false,
-              "showTags": false,
+              "localInterlinks": true,
+              "showTags": true,
               "showAttachments": false,
               "hideUnresolved": false,
               "collapse-color-groups": true,
               "colorGroups": [],
               "collapse-display": true,
-              "showArrow": false,
+              "showArrow": true,
               "textFadeMultiplier": 0,
               "nodeSizeMultiplier": 1,
               "lineSizeMultiplier": 1,
-              "collapse-forces": false,
-              "centerStrength": 0.653846153846154,
-              "repelStrength": 15.6410256410256,
-              "linkStrength": 0.713675213675214,
-              "linkDistance": 289,
-              "scale": 0.9999999999999986,
+              "collapse-forces": true,
+              "centerStrength": 0.258292260556814,
+              "repelStrength": 7.8966298121753,
+              "linkStrength": 0.514053550019981,
+              "linkDistance": 195,
+              "scale": 1.0198641940622653,
               "close": false
             }
           }
         },
-        "group": "52c029e28c353e87"
+        "group": "9e213ff2017af9c7"
       }
     ],
     "direction": "vertical"
@@ -105,7 +105,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "model/Consumer.md",
+                "file": "docs/sprocket.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -123,17 +123,17 @@
     "width": 300,
     "collapsed": true
   },
-  "active": "4130ab4b9b046504",
+  "active": "d64849151d727093",
   "lastOpenFiles": [
+    "docs/sprocket.md",
+    "docs/contraption.md",
+    "README.md",
+    "docs/landscape.md",
+    "docs/hexabox.svg",
+    "docs/ideas.md",
     "model/Consumer.md",
     "model/Network.md",
     "model/Node.md",
-    "model/Processing.md",
-    "model/actor/model.md",
-    "model/entrypoint/launchpad.md",
-    "model/Publishing.md",
-    "model/URL.md",
-    "model/Source.md",
-    "model/User.md"
+    "model/Processing.md"
   ]
 }

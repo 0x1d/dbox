@@ -2,6 +2,7 @@
  {
    imports =[
       ./hashi.nix
+      ./dbox.nix
     ];
 
    # root filesytem
