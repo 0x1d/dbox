@@ -66,8 +66,16 @@ function ui {
 }
 
 ##
-## ~> Docker ------------------------------------------------------
+## ~> Dev ------------------------------------------------------
 ##
+## waypoint         Waypoint up
+function waypoint {
+    ls apps/ \
+        | fzf --height=10 --layout=reverse \
+        | xargs cd apps/$@
+    waypoint init && waypoint up 
+    ctl_continue
+}
 ## dcu              Compose up
 function dcu {
     pushd dev
