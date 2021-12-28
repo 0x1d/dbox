@@ -46,13 +46,18 @@
         extraPackages = with pkgs; [
           rofi #application launcher
           i3status # gives you the default i3 status bar
+          polybar
           #i3status-rs # TODO configuration
-          i3lock #default i3 screen locker
+          #i3lock #default i3 screen locker
+          i3wsr
+          i3-resurrect 
+          i3lock-fancy-rapid
           i3blocks #if you are planning on using i3blocks over i3status
           arandr # xrandr ui
           nitrogen # wallpaper
           pavucontrol # pulse audio volume control for xfce
           ncpamixer # ncurses mixer
+          conky
         ];
       };
     };

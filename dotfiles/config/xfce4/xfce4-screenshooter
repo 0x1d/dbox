@@ -1,8 +1,0 @@
-app=/nix/store/z4fwq96g7c2smcghdnvvhgf06dyfyhf3-brave-1.30.87/bin/brave
-last_user=
-screenshot_dir=file:///home/master/Pictures
-action=2
-delay=2
-region=3
-show_mouse=0
-

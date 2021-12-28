@@ -25,6 +25,10 @@ exec --no-startup-id obsidian
 exec --no-startup-id xfce4-terminal --title ctlsh --default-working-directory ~/ -x bpytop
 exec --no-startup-id xfce4-terminal --title ctlsh --default-working-directory ~/src/dbox -x ~/src/dbox/ctl.sh
 
+exec --no-startup-id ~/.config/polybar/scripts/launch-polybar
+exec --no-startup-id conky -c /home/master/.config/conky/conkyrc & sleep 0.5
+bindsym space+space exec --no-startup-id rofi -apps
+
 #exec --no-startup-id compton -d --config /home/master/.config/compton/config
 
 # Use pactl to adjust volume in PulseAudio.
@@ -166,16 +170,16 @@ mode "resize" {
 
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
-bar {
-        status_command i3status --transparency
-        separator_symbol ⁞
-        strip_workspace_numbers yes
-        #font pango:DejaVu Sans Mono 14
-        #mode hide
-        #position top
-        #output primary
-        #tray_output none
-}
+#bar {
+#        status_command i3status --transparency
+#        separator_symbol ⁞
+#        strip_workspace_numbers yes
+#        #font pango:DejaVu Sans Mono 14
+#        #mode hide
+#        #position top
+#        #output primary
+#        #tray_output none
+#}
 
 # gaps
 gaps inner 12

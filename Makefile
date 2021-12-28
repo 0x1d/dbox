@@ -8,8 +8,10 @@ default: info
 it: dbox
 so: apply
 
-commit: sync
-sync: ${DOTCONFIG}
+commit: collect
+collect: ${DOTCONFIG}
+
+update: dbox
 
 ctl:
 	./ctl.sh

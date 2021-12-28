@@ -1,0 +1,9 @@
+{
+    "workbench.colorTheme": "Abyss",
+    "explorer.confirmDragAndDrop": false,
+    "files.associations": {
+        "*.hcl": "terraform"
+    },
+    "workbench.iconTheme": "sweet-vscode-icons",
+    "hediet.vscode-drawio.theme": "Kennedy"
+}
