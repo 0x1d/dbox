@@ -35,7 +35,6 @@
       };
     };
 
-    # i3 as window Manager
     windowManager = {
       leftwm = {
         enable = true;
@@ -102,7 +101,8 @@
     tree fzf
     curl wget
     unzip
-    
+    appimage-run
+
     tmux ranger vim
     spacevim
     bpytop
@@ -112,28 +112,35 @@
 
     # viewers
     imv
-    emulsion
+    emulsion # image viewer
     vlc
 
     # streaming
     oven-media-engine
     streamlink
-    pitivi
+    pitivi # movie editor
     ffmpeg-full
+    obs-studio
     
     # ui
     xorg.xkill
     nerdfonts
-    picom
+    picom # compositor
+    # web browser
+    browsh # modern terminal web browser
+    links2 # terminal web web browser
     brave
     firefox
     qutebrowser
     chromium
     chromium-xorg-conf
     remmina
+    # rice
     rofi
     polybar
-        
+    alacritty
+    eww
+
     # virtualization
     docker
     docker-compose
@@ -163,7 +170,6 @@
     # tools
     gimp
     obsidian
-    obs-studio obs-gstreamer obs-multi-rtmp
 
     # sdr
     pothos

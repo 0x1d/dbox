@@ -41,7 +41,7 @@ modules-right = pkg memory temperature coreuse network volume
 inherit = bar/master
 
 ; Use $ xrandr -q | grep " connected" | cut -d ' ' -f1
-monitor = eDP1
+;monitor = eDP1
 
 modules-left = config i3-workspaces menu
 modules-center = clock
