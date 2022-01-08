@@ -38,8 +38,8 @@ iso:
 
 vm:
 	NIXOS_CONFIG=${SRCD}/os/vm.nix \
-		nixos-rebuild -I nixos=${SRCD}/os/configuration.nix build-vm \
-		./result/bin/run-vmhost-vm
+		nixos-rebuild -I nixos=${SRCD}/kde-iso.nix build-vm
+	./result/bin/run-vmhost-vm
 
 # ------------------------------------------------------
 
