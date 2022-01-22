@@ -12,16 +12,15 @@ services:
   nomad:
     image: multani/nomad
     #build: .
-    command: agent -dev-connect #-network-interface="wlp5s0"
+    command: agent -dev-connect
     privileged: true
     network_mode: host
     environment:
       NOMAD_LOCAL_CONFIG: |
         data_dir = "/nomad/data/"
-
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock:rw
-      - /usr/bin/consul:/bin/consul
+      - ${BIN_PATH}/consul:/bin/consul
       - /tmp:/tmp
 #networks:
 #  consul-local:

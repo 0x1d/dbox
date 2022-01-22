@@ -62,6 +62,10 @@
   # Enable sound.
   sound.enable = true;
   hardware.pulseaudio.enable = true;
+  hardware.bluetooth.enable = true;
+  
+  # Enable GPU
+  #services.xserver.videoDrivers = [ "nvidia" ];
 
   # Enable touchpad support (enabled default in most desktopManager).
   services.xserver.libinput.enable = true;
@@ -85,9 +89,11 @@
     fzf broot
     vim spacevim
     bpytop
+    nmap
     wget curl 
     unzip
     starship ranger tmux imv
+    onboard
     firefox chromium brave
     vlc
     appimage-run
@@ -101,6 +107,29 @@
     rofi
     libsForQt5.kdeconnect-kde
     remmina
+    barrier
+
+    # virtualization
+    docker
+    docker-compose
+
+    # Hashistack
+    packer
+    consul consul-template
+    nomad nomad-autoscaler damon
+    vault
+    terraform
+    waypoint
+    hashi-ui
+    
+    # Kubernetes
+    kubectl kubectx kubernetes-helm lens
+    google-cloud-sdk
+    
+    steam
+    obs-studio
+    exodus
+    partition-manager
   ];
 
   # Compositor

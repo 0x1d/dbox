@@ -15,4 +15,7 @@ app "i3" {
     deploy {
         use "docker" {}
     }
+    release {
+        use "docker"
+    }
 }

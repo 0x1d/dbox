@@ -1,0 +1,8 @@
+version: '3.0'
+
+services:
+  shiftr:
+    image: wirelos/shiftr
+    ports:
+    - 1883:1883
+    - 1884:1884
