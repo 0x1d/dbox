@@ -3,6 +3,8 @@ SRCD ?= $(shell pwd)
 DOTCONFIG = $(shell ls dotfiles/config)
 USER_CONFIG = $(shell ls ~/.config)
 
+NIXBOX = (dbox kde-i1)
+
 default: info
 
 it: kdi3
@@ -43,7 +45,7 @@ iso:
 
 vm:
 	NIXOS_CONFIG=${SRCD}/os/vm.nix \
-		nixos-rebuild -I nixos=${SRCD}/kde-iso.nix build-vm
+		nixos-rebuild -I nixos=${SRCD}/kde-i3.nix build-vm
 	./result/bin/run-vmhost-vm
 
 # ------------------------------------------------------

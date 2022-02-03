@@ -2,7 +2,7 @@
  {
    imports =[
       ./hashi.nix
-      ./dbox.nix
+      ./kde-i3.nix
     ];
 
    # root filesytem
@@ -15,7 +15,7 @@
    users.extraUsers.vm = {
      isNormalUser = true;
      password = "vm";
-     shell = "${pkgs.bash}/bin/bash";
+     shell = "${pkgs.fish}/bin/fish";
      group = "wheel";
    };
 

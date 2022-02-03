@@ -10,16 +10,22 @@ REDITALIC="\e[3;${RED}m"
 EC="\e[0m"
 
 ##
-## ~> System ----------------------------------------------------------
+## ~> System --------------------------------------------------
 ##
 function info {
     ctl_info
     ctl_continue
 }
+
 ## config           Configure
 function config {
     starship init fish --print-full-init > dotfiles/config/yakrc
     spacevim dotfiles/config
+}
+## vm               Run as VM
+function vm {
+    make vm
+    ctl_continue
 }
 ## bootstrap        Install configuration and rebuild system
 function bootstrap {
@@ -34,6 +40,14 @@ function shell {
     ctl_continue
 }
 
+## dshell           Containerized Shell
+function dshell {
+    docker run --rm -it \
+    -v $(pwd):/srv \
+    -v /var/run/docker.sock:/var/run/docker.sock \
+    ubuntu:20.04 bash
+}
+
 ## [r]e[b]oot       A freshly shaved yak is a happy yak
 function rb {
     reboot
@@ -44,7 +58,7 @@ function sd {
 }
 
 ##
-## ~> Daemons ---------------------------------------------------------
+## ~> Daemons -------------------------------------------------
 ##
 ## cpa              Run [c]ontrol [p]lane [a]gent (server)
 function cpa {
@@ -67,8 +81,18 @@ function ui {
 }
 
 ##
-## ~> Dev ------------------------------------------------------------
+## ~> Dev -----------------------------------------------------
 ##
+
+## tfm              [t]erra[f]orm[m]odules
+function tfm {
+    pushd terraform
+        ls \
+        | fzf --height=10 --layout=reverse 
+    popd
+    ctl_continue
+}
+
 ## wpu              [w]ay[p]oint [u]p
 function wpu {
     ls apps/ \
@@ -99,7 +123,7 @@ function dps {
 }
 
 ##
-## ~> Orchestrator ---------------------------------------------------
+## ~> Orchestrator --------------------------------------------
 ##
 ## status           Query job status
 function status {

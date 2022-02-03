@@ -1,7 +1,17 @@
 */*/.waypoint
+**/.tfstate
 *.qcow2
 result
 nixpkgs
 #nixos
 .yakrc
 logs
+
+.obsidian
+.waypoint
+.build
+.run
+.webtop
+data.db
+waypoint-restore.*
+waypoint-server-*
