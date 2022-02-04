@@ -1,0 +1,21 @@
+version: '3.6'
+
+services:
+  flame:
+    image: pawelmalak/flame
+    container_name: flame
+    volumes:
+      - ${PWD}/data:/app/data
+      - /var/run/docker.sock:/var/run/docker.sock # optional but required for Docker integration
+    ports:
+      - 5005:5005
+    environment:
+      - PASSWORD=th3r31sn0sp00n
+    restart: unless-stopped
+
+
+#labels:
+#  - flame.type=application # "app" works too
+#  - flame.name=My container
+#  - flame.url=https://example.com
+#  - flame.icon=icon-name # optional, default is "docker"

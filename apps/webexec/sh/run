@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+
+APP?=/opt/bin/webexec
+
+${APP} init
+${APP} start

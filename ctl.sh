@@ -1,6 +1,9 @@
 #!/usr/bin/env bash
 
-BIN_PATH=${BIN_PATH:-/run/current-system/sw/bin}
+export PATH=$PATH:$HOME/bin
+
+#BIN_PATH=${BIN_PATH:-/run/current-system/sw/bin}
+
 
 RED="31"
 GREEN="32"
@@ -20,7 +23,7 @@ function info {
 ## config           Configure
 function config {
     starship init fish --print-full-init > dotfiles/config/yakrc
-    spacevim dotfiles/config
+    spacevim 
 }
 ## vm               Run as VM
 function vm {
@@ -32,6 +35,9 @@ function bootstrap {
     make it so
     ctl_continue
 }
+## clone            Clone this node
+## 
+
 ## shell            Interact with Starship
 function shell {
     starship explain

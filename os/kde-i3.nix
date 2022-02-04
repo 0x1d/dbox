@@ -1,6 +1,38 @@
 { config, pkgs, ... }:
 
 {
+  imports =
+    [ # Include the results of the hardware scan.
+      ./hardware-configuration.nix
+    ];
+
+  # Use the systemd-boot EFI boot loader.
+  boot.loader.systemd-boot.enable = true;
+  boot.loader.efi.canTouchEfiVariables = true;
+
+  networking.hostName = "rayzr"; # Define your hostname.
+  #networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
+
+  # Set your time zone.
+  time.timeZone = "Europe/Zurich";
+
+  # The global useDHCP flag is deprecated, therefore explicitly set to false here.
+  # Per-interface useDHCP will be mandatory in the future, so this generated config
+  # replicates the default behaviour.
+  #networking.useDHCP = false;
+  #networking.interfaces.wlp3s0.useDHCP = true;
+  networking.networkmanager.enable = true;
+
+  # Configure network proxy if necessary
+  # networking.proxy.default = "http://user:password@proxy:port/";
+  # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
+
+  # Select internationalisation properties.
+  # i18n.defaultLocale = "en_US.UTF-8";
+  # console = {
+  #   font = "Lat2-Terminus16";
+  #   keyMap = "us";
+  # };
 
   virtualisation.docker.enable = true;
 
@@ -40,6 +72,12 @@
     extraGroups = [ "wheel" "docker" "networkmanager" ]; # Enable ‘sudo’ for the user.
   };
 
+  # Define a user account. Don't forget to set a password with ‘passwd’.
+  users.users.work = {
+    isNormalUser = true;
+    extraGroups = [ "wheel" "docker" "networkmanager" ];
+  };
+
   nixpkgs.config.allowUnfree = true;
 
   # List packages installed in system profile. To search, run:
@@ -56,8 +94,9 @@
     nmap
     wget curl 
     unzip
-    starship ranger tmux imv
-    onboard
+
+    alacritty # modern terminal emulator
+    fish starship ranger tmux imv
     firefox chromium brave
     vlc
     appimage-run
@@ -67,6 +106,7 @@
     obsidian
     i3
     i3-gaps
+    nerdfonts
     nitrogen
     rofi
     libsForQt5.kdeconnect-kde
@@ -90,10 +130,12 @@
     kubectl kubectx kubernetes-helm lens
     google-cloud-sdk
     
+    onboard # onscreen keyboard
     steam
     obs-studio
     exodus
     partition-manager
+    keeweb
   ];
 
   # Compositor

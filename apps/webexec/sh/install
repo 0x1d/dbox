@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+
+APP=webexec
+ARCH=linux_amd64
+VERSION=0.16.0
+BUILD=${APP}_${VERSION}_${ARCH}
+INSTALL_DIR=/bin
+WRK_DIR=.build
+
+mkdir -p ${WRK_DIR}
+pushd ${WRK_DIR}
+    wget https://github.com/tuzig/${APP}/releases/download/v${VERSION}/${BUILD}.tar.gz
+    tar -xf ${BUILD}.tar.gz
+    mv ${BUILD}/${APP} ${INSTALL_DIR}/${APP}
+popd
+rm -r ${WRK_DIR}
