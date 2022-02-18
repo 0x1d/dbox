@@ -4,7 +4,6 @@ export PATH=$PATH:$HOME/bin
 
 #BIN_PATH=${BIN_PATH:-/run/current-system/sw/bin}
 
-
 RED="31"
 GREEN="32"
 GREENBLD="\e[1;${GREEN}m"
@@ -25,7 +24,29 @@ function config {
     starship init fish --print-full-init > dotfiles/config/yakrc
     spacevim 
 }
-## vm               Run as VM
+
+## disk             List block devices / disks
+function disk {
+    lsblk
+    ctl_continue
+}
+
+## flash            Write <input.image> to <output.device>
+function flash {
+    local input_file=$1
+    local output_file=$2
+    #lsblk | fzf --height=10 --layout=reverse | awk '{ print $1}' | xargs echo $@
+    echo "Write < ${input_file} > to < ${output_file} > ?"
+    ctl_continue
+    dd if=$input_file of=$output_file status=progress
+    echo "DONE"
+    ctl_continue
+}
+
+## clone            Clone node
+## 
+
+## vm               Run as virtual machine
 function vm {
     make vm
     ctl_continue
@@ -35,8 +56,6 @@ function bootstrap {
     make it so
     ctl_continue
 }
-## clone            Clone this node
-## 
 
 ## shell            Interact with Starship
 function shell {
@@ -54,7 +73,7 @@ function dshell {
     ubuntu:20.04 bash
 }
 
-## [r]e[b]oot       A freshly shaved yak is a happy yak
+## [r]e[b]oot       A fresh yak is a happy yak
 function rb {
     reboot
 }
@@ -89,6 +108,14 @@ function ui {
 ##
 ## ~> Dev -----------------------------------------------------
 ##
+
+## bfs              build from source
+function bfs {
+  git clone $1 $2
+  pushd $2
+    docker build -t $3 .
+  popd
+}
 
 ## tfm              [t]erra[f]orm[m]odules
 function tfm {
