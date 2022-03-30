@@ -1,6 +1,6 @@
 # /etc/nomad.d/client.hcl
 
-datacenter = "yaktown"
+datacenter = "dc1"
 data_dir   = "/opt/nomad/client/data"
 bind_addr  = "0.0.0.0"
 

@@ -5,8 +5,8 @@ USER_CONFIG = $(shell ls ~/.config)
 
 default: info
 
-it: dbox
-so: apply
+it: kdi3
+so: use
 
 commit: collect
 collect: ${DOTCONFIG}
@@ -16,12 +16,17 @@ update: dbox
 ctl:
 	./ctl.sh
 
-dbox:
+home:
 	-ln -s ${PWD}/ctl.sh ${HOME}/ctl.sh
 	cp -r dotfiles/config/* ${HOME}/.config
+
+kdi3:
+	sudo cp -r os/kde-i3.nix /etc/nixos/configuration.nix
+
+dbox: home
 	sudo cp -r os/dbox.nix /etc/nixos/
 
-apply:
+use:
 	sudo nixos-rebuild switch
 
 $(DOTCONFIG):

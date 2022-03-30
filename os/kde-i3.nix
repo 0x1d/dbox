@@ -85,9 +85,11 @@
     fzf broot
     vim spacevim
     bpytop
+    nmap
     wget curl 
     unzip
     starship ranger tmux imv
+    onboard
     firefox chromium brave
     vlc
     appimage-run
@@ -101,6 +103,27 @@
     rofi
     libsForQt5.kdeconnect-kde
     remmina
+    barrier
+
+    # virtualization
+    docker
+    docker-compose
+
+    # Hashistack
+    packer
+    consul consul-template
+    nomad nomad-autoscaler damon
+    vault
+    terraform
+    waypoint
+    hashi-ui
+    
+    # Kubernetes
+    kubectl kubectx kubernetes-helm lens
+    google-cloud-sdk
+    
+    steam
+    obs-studio
   ];
 
   # Compositor

@@ -10,7 +10,7 @@ REDITALIC="\e[3;${RED}m"
 EC="\e[0m"
 
 ##
-## ~> System ------------------------------------------------------
+## ~> System ----------------------------------------------------------
 ##
 function info {
     ctl_info
@@ -29,7 +29,8 @@ function bootstrap {
 ## shell            Interact with Starship
 function shell {
     starship explain
-    source .yakrc
+    source <(starship init bash --print-full-init)
+    konsole
     ctl_continue
 }
 
@@ -43,33 +44,33 @@ function sd {
 }
 
 ##
-## ~> Daemons ----------------------------------------------------
+## ~> Daemons ---------------------------------------------------------
 ##
-## nsa              Nomad Server Agent
-function server {
+## cpa              Run [c]ontrol [p]lane [a]gent (server)
+function cpa {
     sudo nomad agent \
         -server \
         -config=./os/etc/nomad.d/server-single.hcl \
         -bootstrap-expect=1
 }
 
-## nca              Nomad Client Agent
-function client {
+## dpa              Run [d]ata [p]lane [a]gent (client)
+function dpa {
     sudo nomad agent \
         -client \
         -config=./os/etc/nomad.d/client.hcl
 }
-## ui               Web interface
+## ui               [u]ser [i]nterface
 function ui {
     hashi-ui --consul-enable --nomad-enable
     ctl_continue
 }
 
 ##
-## ~> Dev ------------------------------------------------------
+## ~> Dev ------------------------------------------------------------
 ##
-## waypoint         Waypoint up
-function waypoint {
+## wpu              [w]ay[p]oint [u]p
+function wpu {
     ls apps/ \
         | fzf --height=10 --layout=reverse \
         | xargs cd apps/$@
@@ -78,14 +79,14 @@ function waypoint {
 }
 ## dcu              Compose up
 function dcu {
-    pushd dev
-        docker-compose up
+    pushd $@
+        docker-compose up -d
     popd
     ctl_continue
 }
 ## dcd              Compose down
 function dcd {
-    pushd dev
+    pushd $@
         docker-compose down --remove-orphans
     popd
 }
@@ -97,7 +98,7 @@ function dps {
     ctl_continue
 }
 ##
-## ~> Orchestrator -------------------------------------------------
+## ~> Orchestrator ---------------------------------------------------
 ##
 ## status           Query job status
 function status {
@@ -140,7 +141,7 @@ function ctl_info {
     clear
     echo -e "${GREENBLD}$(cat motd)${EC}"
     sed -n 's/^##//p' ctl.sh 
-    printf "\n-----------------------------------------------------------------\n\n"
+    printf "\n--------------------------------------------------------------------\n\n"
 }
 
 function ctl_loop {
