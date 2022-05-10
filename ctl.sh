@@ -2,7 +2,8 @@
 
 export PATH=$PATH:$HOME/bin
 
-#BIN_PATH=${BIN_PATH:-/run/current-system/sw/bin}
+IDENTITY=${$IDENTITY:-~/.ssh/id_yak}
+BIN_PATH=${BIN_PATH:-/run/current-system/sw/bin}
 
 RED="31"
 GREEN="32"
@@ -14,10 +15,7 @@ EC="\e[0m"
 ##
 ## ~> System --------------------------------------------------
 ##
-function info {
-    ctl_info
-    ctl_continue
-}
+
 
 ## config           Configure
 function config {
@@ -80,6 +78,46 @@ function rb {
 ## [s]hut[d]own     Sleep with the fishes
 function sd {
     shutdown -h now
+}
+
+
+##
+## ~> Identity ------------------------------------------------
+##
+
+## id:keygen        Generate identity keypair
+function id:keygen {
+    ssh-keygen -f $IDENTITY
+}
+
+## id:authorize     Authorize identity on remote host
+function id:authorize {
+    local identity_file=$1
+    local remote_host=$2
+    ssh-copy-id -i $identity_file $remote_host
+}
+
+## remote:shell     Login to remote shell using local identity
+function remote:shell {
+    ssh -i $IDENTITY $USR@$1
+}
+
+## remote:logs      Show remote logs
+function remote:logs {
+    remote:exec "tail -f ${CATALINA_LOGS}"
+}
+
+## remote:exec      Executes a command on the remote host
+function remote:exec {
+    local cmd=$@
+    ssh -i $IDENTITY $TARGET $cmd
+}
+
+## remote:copy      Copies a file to the remote host
+function remote:copy {
+    local src=$1
+    local dest=$2
+    scp -i $IDENTITY $src $dest
 }
 
 ##
@@ -151,7 +189,7 @@ function dcd {
 function dps {
     docker ps \
     | fzf --height=10 --layout=reverse \
-    | awk '{ print $1}' | xargs docker inspect
+    | awk '{ print $1}' | xargs docker attach
     ctl_continue
 }
 
@@ -185,6 +223,15 @@ function run {
     job run
 }
 
+function today {
+    date '+%y%m%d'
+}
+
+function info {
+    ctl_info
+    ctl_continue
+}
+
 function ctl_nomad_info {
     nomad node status
     printf "\n-----------------------------------------------------------------\n\n"
@@ -210,6 +257,14 @@ function ctl_loop {
 
 function ctl_continue {
     read -p "Press [ENTER] to continue."
+}
+
+function throw_ex {
+  if [ $? > 0 ]; then
+    echo "ERROR: $1";
+    rollback
+    exit 1;
+  fi
 }
 
 ${@:-ctl_loop}

@@ -7,7 +7,7 @@ NIXBOX = (dbox kde-i1)
 
 default: info
 
-it: kdi3
+it: home
 so: use
 
 commit: collect
