@@ -4,9 +4,9 @@
 
 ## A Day in YakTown
 Featuring:
-- Alice - First of Yak
+- Alice - The Yakborn
 - Bob - The Brovisioner
-- Carl - The Collaborator
+- Carl - The Callboy
 
 ```plantuml-ascii
 actor Alice

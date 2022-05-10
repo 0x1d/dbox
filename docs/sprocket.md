@@ -7,4 +7,5 @@ List of potential sprockets:
 - TRS - Tranceiver Relay Station (e.g. Audio-Bluetooth, Audio-Wifi, various RF tranceiving)
 - [[illucat]]
 - [[farbgeber]]
-- [[]]
+- ABT - Audio Bluetooth Tranceiver
+- fistbump - RFID input trigger
